@@ -1,12 +1,12 @@
 " Basic Conf
 " --------------------------------------------------------------
 " Backup and Swap
-if has("mac") "
-    set backup
-    set backupdir=~/.vim/backup
-    set swapfile
-    set directory=~/.vim/backup
-endif
+set backup
+set backupdir=~/.vim/backup
+set swapfile
+set directory=~/.vim/backup
+set undofile
+set undodir=~/.vim/backup
 " Leader Key
 let mapleader = "\<Space>"
 set clipboard+=unnamed
