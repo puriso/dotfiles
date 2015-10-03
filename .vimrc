@@ -1,5 +1,11 @@
 " Basic Conf
 " --------------------------------------------------------------
+" $HOME
+if has ('win64')
+    let $HOME=$USERPROFILE
+endif
+" ESC is jj
+inoremap <silent> jj <ESC>
 " Backup and Swap
 set backup
 set backupdir=~/.vim/backup
@@ -27,11 +33,30 @@ set expandtab
 set shiftwidth=4
 " ホワイトスペース可視化
 set lcs=tab:>.,trail:-,extends:\
-" 末尾の空白を削除
-autocmd BufWritePre * :%s/\s\+$//ge
-"Syntax
-syntax on
 
+autocmd BufWritePre * :%s/\s\+$//ge " 末尾の空白を削除
+set showmatch " highlight select tag
+syntax on
+set mouse=a
+" font size + line height
+if has ('win64')
+    set encoding=utf-8
+    source $VIMRUNTIME/delmenu.vim
+    set langmenu=ja_jp.utf-8
+    source $VIMRUNTIME/menu.vim
+    set guifont=MS\ Gothic:h10
+    set columns=150
+    set lines=65
+    set ambiwidth=double
+endif
+"GUI for gVim
+if has ('win64')
+    autocmd GUIEnter * set transparency=235 " opacity
+    " set guioptions-=m "hide the menubar
+    set guioptions-=T " hide the toolbar
+    set cursorline " set gVim Only
+    set iminsert=0
+endif
 
 " Middleware Conf
 " ------------------------------------------------------------
@@ -127,10 +152,11 @@ NeoBundle 'scrooloose/syntastic'
     let g:syntastic_auto_loc_list=2
 
     let g:syntastic_mode_map = {
-    \ "mode" : "passive",
-    \ "active_filetypes" : ["javascript", "json","php"],
-    \}
+                \ "mode" : "passive",
+                \ "active_filetypes" : ["javascript", "json","php"],
+                \}
     let g:syntastic_javascript_checker = "jshint"
+
 "    augroup AutoSyntastic
 "        autocmd!
 "        autocmd InsertLeave,TextChanged * call s:syntastic()
@@ -143,8 +169,10 @@ NeoBundle 'scrooloose/syntastic'
 
 " FrontEnd
 NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'othree/html5.vim'
+"NeoBundle 'taichouchou2/html5.vim'
+"NeoBundle 'taichouchou2/vim-javascript'
 NeoBundle 'moll/vim-node'
+NeoBundle 'nono/vim-handlebars'
 " Close Tag Comp
 autocmd FileType html inoremap <silent> <buffer> </ </<C-x><C-o>
 " emmet
@@ -166,6 +194,32 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'Townk/vim-autoclose'
+NeoBundle 'itchyny/lightline.vim'
+    set laststatus=2
+    let g:lightline = {
+        \ 'colorscheme': 'wombat',
+        \ 'active': {
+        \   'right': [ [ 'syntastic', 'lineinfo' ],
+        \              [ 'percent' ],
+        \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+        \ },
+        \ 'component_expand': {
+        \   'syntastic': 'SyntasticStatuslineFlag',
+        \ },
+        \ 'component_type': {
+        \   'syntastic': 'error',
+        \ }
+        \ }
+    augroup AutoSyntastic
+        autocmd!
+        autocmd BufWritePost *.c,*.cpp call s:syntastic()
+    augroup END
+    function! s:syntastic()
+        SyntasticCheck
+        call lightline#update()
+    endfunction
+NeoBundle 'jelera/vim-javascript-syntax'
+
 
 call neobundle#end()
 
@@ -173,7 +227,8 @@ call neobundle#end()
 if has("mac")
     colorscheme molokai
     highlight Normal ctermbg=none
-elseif has("win64")
+endif
+if has('win64')
     colorscheme lucius
 endif
 
