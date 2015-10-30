@@ -4,8 +4,10 @@
 if has ('win64')
     let $HOME=$USERPROFILE
 endif
-" ESC is jj
-inoremap <silent> jj <ESC>
+" INSERT MODE KEYBIND
+inoremap <silent> jj <ESC>  " jj == ESC
+inoremap <silent> kk <ESC>  " kk == ESC
+
 " Backup and Swap
 set backup
 set backupdir=~/.vim/backup
@@ -17,6 +19,12 @@ set undodir=~/.vim/backup
 let mapleader = "\<Space>"
 set clipboard+=unnamed
 set backspace=indent,eol,start
+" インデント表示
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_start_level = 2
+"let g:indent_guides_guide_size = 1
+"let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'unite']
+
 " 閉じ括弧が入力されたとき、対応する括弧を表示する
 set showmatch
 " 新しい行を作ったときに高度な自動インデントを行う
@@ -123,7 +131,7 @@ NeoBundle 'Shougo/neocomplcache'
         \ }
 
     " Plugin key-mappings.
-    inoremap <expr><C-l>     neocomplcache#complete_common_string()
+    "inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
     " Recommended key-mappings.
     " <CR>: close popup and save indent.
@@ -134,8 +142,8 @@ NeoBundle 'Shougo/neocomplcache'
     " <TAB>: completion.
     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
     " <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+    " inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+    " inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
     inoremap <expr><C-y>  neocomplcache#close_popup()
     inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
@@ -169,6 +177,7 @@ NeoBundle 'scrooloose/syntastic'
 
 " FrontEnd
 NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'othree/html5.vim'
 "NeoBundle 'taichouchou2/html5.vim'
 "NeoBundle 'taichouchou2/vim-javascript'
 NeoBundle 'moll/vim-node'
