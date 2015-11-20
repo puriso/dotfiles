@@ -87,7 +87,6 @@ let g:sql_type_default='mysql'
 
 " NeoBundle Set
 " ------------------------------------------------------------
-set nocompatible               " Be iMproved
 filetype off                   " Required!
 
 " Check NeoBundle have already been installed
