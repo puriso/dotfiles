@@ -1,3 +1,8 @@
+" Vim starting
+" --------------------------------------------------------------
+
+
+
 " Basic Conf
 " --------------------------------------------------------------
 " $HOME
@@ -80,15 +85,18 @@ let php_parent_error_close = 1
 let g:sql_type_default='mysql'
 
 
-
-
 " NeoBundle Set
 " ------------------------------------------------------------
 set nocompatible               " Be iMproved
 filetype off                   " Required!
 
+" Check NeoBundle have already been installed
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
+    echo "install neobundle..."
+    :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
+  endif
+  set runtimepath+=~/.vim/bundle/neobundle.vim
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
@@ -242,6 +250,19 @@ if has('win64')
 endif
 
 
+
+" Check NeoBundleInstall
+" --------------------------------------------------------------
+if(!empty(neobundle#get_not_installed_bundle_names()))
+  echomsg 'Not installed bundles: '
+    \ string(neobundle#get_not_installed_bundle_names())
+  if confirm('Install bundles now?', "yes\nNo", 2) == 1
+    " vimrc を再度読み込み、インストールした Bundle を有効化
+    " vimrc は必ず再読み込み可能な形式で記述すること
+    NeoBundleInstall
+    source ~/.vimrc
+  endif
+end
 
 
 " ====================
