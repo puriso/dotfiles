@@ -103,13 +103,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 filetype plugin indent on     " Required!
 
-" Installation check.
-if neobundle#exists_not_installed_bundles()
-  echomsg 'Not installed bundles : ' .
-        \ string(neobundle#get_not_installed_bundle_names())
-  echomsg 'Please execute ":NeoBundleInstall" command.'
-  "finish
-endif
+
 
 
 
@@ -210,6 +204,14 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'Townk/vim-autoclose'
+
+" Vim markdown
+":PrevimOpen
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'kannokanno/previm'
+NeoBundle 'tyru/open-browser.vim'
+au BufRead,BufNewFile *.md set filetype=markdown
+
 NeoBundle 'itchyny/lightline.vim'
     set laststatus=2
     let g:lightline = {
@@ -269,5 +271,4 @@ end
 " ====================
 " PHPLint
 " JSHint
-" emmet
 " make vimproc
