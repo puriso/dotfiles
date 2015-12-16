@@ -46,6 +46,8 @@ set expandtab
 set shiftwidth=4
 " ホワイトスペース可視化
 set lcs=tab:>.,trail:-,extends:\
+" search highlight
+:set hlsearch
 
 autocmd BufWritePre * :%s/\s\+$//ge " 末尾の空白を削除
 set showmatch " highlight select tag
