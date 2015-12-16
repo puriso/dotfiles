@@ -36,7 +36,7 @@ set showmatch
 set smartindent
 " 行番号設定
 set number
-:highlight LineNr ctermfg=239
+highlight LineNr ctermfg=239
 " 編集中のファイル名を表示
 set title
 "tab設定
@@ -47,7 +47,13 @@ set shiftwidth=4
 " ホワイトスペース可視化
 set lcs=tab:>.,trail:-,extends:\
 " search highlight
-:set hlsearch
+set hlsearch
+
+" 挿入モードでのカーソル移動
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
 
 autocmd BufWritePre * :%s/\s\+$//ge " 末尾の空白を削除
 set showmatch " highlight select tag
