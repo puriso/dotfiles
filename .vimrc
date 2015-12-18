@@ -2,7 +2,6 @@
 " --------------------------------------------------------------
 
 
-
 " Basic Conf
 " --------------------------------------------------------------
 " $HOME
@@ -49,16 +48,19 @@ set lcs=tab:>.,trail:-,extends:\
 " search highlight
 set hlsearch
 
-" 挿入モードでのカーソル移動
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-
 autocmd BufWritePre * :%s/\s\+$//ge " 末尾の空白を削除
 set showmatch " highlight select tag
 syntax on
-set mouse=a
+if has("win64")
+    set mouse=a
+endif
+
+if has("mac")
+    set mouse=a
+endif
+if has("unix")
+    set mouse=v
+endif
 " font size + line height
 if has ('win64')
     set encoding=utf-8
@@ -261,6 +263,7 @@ if has("unix")
     let g:lucius_contrast    = "normal" "[low],[normal],[high]
     let g:lucius_contrast_bg = "normal" "[normal] or [high]
     colorscheme lucius
+endif
 if has('win64')
     set t_Co=256
     colorscheme lucius
