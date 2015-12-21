@@ -1,8 +1,3 @@
-" Vim starting
-" --------------------------------------------------------------
-
-
-
 " Basic Conf
 " --------------------------------------------------------------
 " $HOME
@@ -10,8 +5,8 @@ if has ('win64')
     let $HOME=$USERPROFILE
 endif
 " INSERT MODE KEYBIND
-inoremap <silent> jj <ESC>  " jj == ESC
-inoremap <silent> kk <ESC>  " kk == ESC
+inoremap <silent> jj <ESC>
+inoremap <silent> kk <ESC>
 
 " Backup and Swap
 set backup
@@ -49,16 +44,19 @@ set lcs=tab:>.,trail:-,extends:\
 " search highlight
 set hlsearch
 
-" 挿入モードでのカーソル移動
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-
 autocmd BufWritePre * :%s/\s\+$//ge " 末尾の空白を削除
 set showmatch " highlight select tag
 syntax on
-set mouse=a
+if has("win64")
+    set mouse=a
+endif
+
+if has("mac")
+    set mouse=a
+endif
+if has("unix")
+    set mouse=v
+endif
 " font size + line height
 if has ('win64')
     set encoding=utf-8
@@ -156,7 +154,14 @@ NeoBundle 'Shougo/neocomplcache'
     inoremap <expr><C-y>  neocomplcache#close_popup()
     inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+  \ 'build' : {
+    \ 'windows' : 'make -f make_mingw32.mak',
+    \ 'cygwin' : 'make -f make_cygwin.mak',
+    \ 'mac' : 'make -f make_mac.mak',
+    \ 'unix' : 'make -f make_unix.mak',
+  \ },
+\ }
 NeoBundleLazy 'Shougo/vimfiler'
     " Default filer
     let g:vimfiler_as_default_explorer = 1
@@ -261,6 +266,7 @@ if has("unix")
     let g:lucius_contrast    = "normal" "[low],[normal],[high]
     let g:lucius_contrast_bg = "normal" "[normal] or [high]
     colorscheme lucius
+endif
 if has('win64')
     set t_Co=256
     colorscheme lucius
@@ -285,6 +291,4 @@ end
 " ====================
 " Install tools
 " ====================
-" PHPLint
 " JSHint
-" make vimproc
