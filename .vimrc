@@ -2,7 +2,7 @@
 " --------------------------------------------------------------
 " $HOME
 if has ('win64')
-    let $HOME=$USERPROFILE
+let $HOME=$USERPROFILE
 endif
 " INSERT MODE KEYBIND
 inoremap <silent> jj <ESC>
@@ -48,34 +48,39 @@ autocmd BufWritePre * :%s/\s\+$//ge " 末尾の空白を削除
 set showmatch " highlight select tag
 syntax on
 if has("win64")
-    set mouse=a
+set mouse=a
 endif
 
 if has("mac")
-    set mouse=a
+set mouse=a
 endif
-if has("unix")
-    set mouse=v
+if has("linux")
+set mouse=v
+set ttymouse=xterm2
+vmap <C-c> :w !xsel -ib<CR><CR>
+set paste
 endif
 " font size + line height
 if has ('win64')
-    set encoding=utf-8
-    source $VIMRUNTIME/delmenu.vim
-    set langmenu=ja_jp.utf-8
-    source $VIMRUNTIME/menu.vim
-    set guifont=MS\ Gothic:h10
-    set columns=150
-    set lines=65
-    set ambiwidth=double
+set encoding=utf-8
+source $VIMRUNTIME/delmenu.vim
+set langmenu=ja_jp.utf-8
+source $VIMRUNTIME/menu.vim
+set guifont=MS\ Gothic:h10
+set columns=150
+set lines=65
+set ambiwidth=double
 endif
 "GUI for gVim
 if has ('win64')
-    autocmd GUIEnter * set transparency=235 " opacity
-    " set guioptions-=m "hide the menubar
-    set guioptions-=T " hide the toolbar
-    set cursorline " set gVim Only
-    set iminsert=0
+autocmd GUIEnter * set transparency=235 " opacity
+" set guioptions-=m "hide the menubar
+set guioptions-=T " hide the toolbar
+set cursorline " set gVim Only
+set iminsert=0
 endif
+
+
 
 " Middleware Conf
 " ------------------------------------------------------------
