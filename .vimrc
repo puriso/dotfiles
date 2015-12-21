@@ -1,7 +1,3 @@
-" Vim starting
-" --------------------------------------------------------------
-
-
 " Basic Conf
 " --------------------------------------------------------------
 " $HOME
@@ -9,8 +5,8 @@ if has ('win64')
     let $HOME=$USERPROFILE
 endif
 " INSERT MODE KEYBIND
-inoremap <silent> jj <ESC>  " jj == ESC
-inoremap <silent> kk <ESC>  " kk == ESC
+inoremap <silent> jj <ESC>
+inoremap <silent> kk <ESC>
 
 " Backup and Swap
 set backup
@@ -158,7 +154,14 @@ NeoBundle 'Shougo/neocomplcache'
     inoremap <expr><C-y>  neocomplcache#close_popup()
     inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+  \ 'build' : {
+    \ 'windows' : 'make -f make_mingw32.mak',
+    \ 'cygwin' : 'make -f make_cygwin.mak',
+    \ 'mac' : 'make -f make_mac.mak',
+    \ 'unix' : 'make -f make_unix.mak',
+  \ },
+\ }
 NeoBundleLazy 'Shougo/vimfiler'
     " Default filer
     let g:vimfiler_as_default_explorer = 1
@@ -288,6 +291,4 @@ end
 " ====================
 " Install tools
 " ====================
-" PHPLint
 " JSHint
-" make vimproc
