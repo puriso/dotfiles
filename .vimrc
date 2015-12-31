@@ -252,20 +252,22 @@ NeoBundle 'jelera/vim-javascript-syntax'
 call neobundle#end()
 
 " ColorSchemes
+set t_Co=256
 if has("mac")
-    set t_Co=256
-    colorscheme molokai
+    let g:lucius_style       = "dark"
+    let g:lucius_contrast    = "normal" "[low],[normal],[high]
+    let g:lucius_contrast_bg = "normal" "[normal] or [high]
+    colorscheme lucius
+    "colorscheme lmolokai
     highlight Normal ctermbg=none
 endif
-if has("unix")
-    set t_Co=256
+if has("linux")
     let g:lucius_style       = "dark"
     let g:lucius_contrast    = "normal" "[low],[normal],[high]
     let g:lucius_contrast_bg = "normal" "[normal] or [high]
     colorscheme lucius
 endif
 if has('win64')
-    set t_Co=256
     colorscheme lucius
 endif
 
