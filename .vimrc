@@ -1,16 +1,12 @@
-" Vim starting
-" --------------------------------------------------------------
-
-
 " Basic Conf
 " --------------------------------------------------------------
 " $HOME
 if has ('win64')
-    let $HOME=$USERPROFILE
+let $HOME=$USERPROFILE
 endif
 " INSERT MODE KEYBIND
-inoremap <silent> jj <ESC>  " jj == ESC
-inoremap <silent> kk <ESC>  " kk == ESC
+inoremap <silent> jj <ESC>
+inoremap <silent> kk <ESC>
 
 " Backup and Swap
 set backup
@@ -58,8 +54,20 @@ endif
 if has("mac")
     set mouse=a
 endif
-if has("unix")
+if has("linux")
     set mouse=v
+    set ttymouse=xterm2
+    vmap <C-c> :w !xsel -ib<CR><CR>
+    set paste
+
+    set encoding=utf-8
+    source $VIMRUNTIME/delmenu.vim
+    set langmenu=ja_jp.utf-8
+    source $VIMRUNTIME/menu.vim
+    set guifont=MS\ Gothic:h10
+    set columns=150
+    set lines=65
+    set ambiwidth=double
 endif
 " font size + line height
 if has ('win64')
@@ -80,6 +88,8 @@ if has ('win64')
     set cursorline " set gVim Only
     set iminsert=0
 endif
+
+
 
 " Middleware Conf
 " ------------------------------------------------------------
@@ -158,7 +168,14 @@ NeoBundle 'Shougo/neocomplcache'
     inoremap <expr><C-y>  neocomplcache#close_popup()
     inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+  \ 'build' : {
+    \ 'windows' : 'make -f make_mingw32.mak',
+    \ 'cygwin' : 'make -f make_cygwin.mak',
+    \ 'mac' : 'make -f make_mac.mak',
+    \ 'unix' : 'make -f make_unix.mak',
+  \ },
+\ }
 NeoBundleLazy 'Shougo/vimfiler'
     " Default filer
     let g:vimfiler_as_default_explorer = 1
@@ -198,6 +215,11 @@ autocmd FileType html inoremap <silent> <buffer> </ </<C-x><C-o>
 " emmet
 NeoBundle 'mattn/emmet-vim'
     let g:user_emmet_leader_key='<c-e>'
+    let g:user_emmet_settings = {
+            \ 'variables': {
+            \ 'lang' : 'ja'
+        \ }
+    \}
 
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -290,6 +312,4 @@ end
 " ====================
 " Install tools
 " ====================
-" PHPLint
 " JSHint
-" make vimproc
