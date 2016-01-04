@@ -9,11 +9,15 @@ export LANG=ja_JP.UTF-8
 autoload -Uz compinit
 compinit
 
+# PRONPT
+PROMPT="%{${fg[green]}%}[%n]%{${reset_color}%} %~
+%# "
+
 # cd したら自動的にpushdする
 setopt auto_pushd
+
 # 重複したディレクトリを追加しない
 setopt pushd_ignore_dups
-
 
 # グローバルエイリアス
 alias -g L='| less'
@@ -25,8 +29,8 @@ HISTSIZE=1000000
 SAVEHIST=1000000
 
 
-# emacs 風キーバインドにする
-bindkey -e
+# Vim 風キーバインドにする
+bindkey -v
 
 
 # 日本語ファイル名を表示可能にする
@@ -44,4 +48,7 @@ setopt ignore_eof
 # '#' 以降をコメントとして扱う
 setopt interactive_comments
 
-# vim:set ft=zsh :
+# vim:set ft=zsh :a
+#
+export DYLD_LIBRARY_PATH=/usr/lib/:$DYLD_LIBRARY_PATH
+
