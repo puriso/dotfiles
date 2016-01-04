@@ -1,17 +1,33 @@
 # シンプルな zshrc
 # License : MIT
-# http://mollifier.mit-license.org/
+
 
 # 環境変数
 export LANG=ja_JP.UTF-8
+
+# 256色のカラーパレットを表示する
+target_shell=$1
+
+if [ -z "$1" ]; then
+    target_shell=$(basename "$SHELL")
+fi
+
+if [ "$target_shell" = "bash" ]; then
+    bash <<< 'for code in {0..255}; do echo -n "[38;05;${code}m $(printf %03d $code)"; [ $((${code} % 16)) -eq 15 ] && echo; done'
+elif [ "$target_shell" = "zsh" ]; then
+    zsh  <<< 'for code in {000..255}; do print -nP -- "%F{$code}$code %f"; [ $((${code} % 16)) -eq 15 ] && echo; done'
+else
+    echo "error: Invalid argument ($target)"
+    echo "Usage: $0 [bash|zsh]"
+fi
 
 # 補完機能を有効にする
 autoload -Uz compinit
 compinit
 
 # PRONPT
-PROMPT="%{${fg[green]}%}[%n]%{${reset_color}%} %~
-%# "
+PROMPT="%F{240}[%n] %~
+%f%# "
 
 # cd したら自動的にpushdする
 setopt auto_pushd
