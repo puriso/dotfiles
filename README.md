@@ -1,13 +1,14 @@
 # dotfiles
 my dotfiles for mac and win64
 
-## Install dotfiles command
+## Install dotfiles command for mac and linux
 
 ```
 git clone https://github.com/puriso/dotfiles
 cd dotfiles
 ./install.sh
 ```
+
 
 # Necessary Tools
 
