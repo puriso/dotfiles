@@ -1,12 +1,16 @@
+" Vim starting
+" --------------------------------------------------------------
+
+
 " Basic Conf
 " --------------------------------------------------------------
 " $HOME
 if has ('win64')
-let $HOME=$USERPROFILE
+    let $HOME=$USERPROFILE
 endif
 " INSERT MODE KEYBIND
-inoremap <silent> jj <ESC>
-inoremap <silent> kk <ESC>
+inoremap <silent> jj <ESC>  " jj == ESC
+inoremap <silent> kk <ESC>  " kk == ESC
 
 " Backup and Swap
 set backup
@@ -48,39 +52,37 @@ autocmd BufWritePre * :%s/\s\+$//ge " 末尾の空白を削除
 set showmatch " highlight select tag
 syntax on
 if has("win64")
-set mouse=a
+    set mouse=a
 endif
 
 if has("mac")
-set mouse=a
+    set mouse=a
 endif
-if has("linux")
-set mouse=v
-set ttymouse=xterm2
-vmap <C-c> :w !xsel -ib<CR><CR>
-set paste
+if has("unix")
+    set mouse=v
 endif
 " font size + line height
 if has ('win64')
-set encoding=utf-8
-source $VIMRUNTIME/delmenu.vim
-set langmenu=ja_jp.utf-8
-source $VIMRUNTIME/menu.vim
-set guifont=MS\ Gothic:h10
-set columns=150
-set lines=65
-set ambiwidth=double
+    set encoding=utf-8
+    source $VIMRUNTIME/delmenu.vim
+    set langmenu=ja_jp.utf-8
+    source $VIMRUNTIME/menu.vim
+    set guifont=MS\ Gothic:h10
+    set columns=150
+    set lines=65
+    set ambiwidth=double
 endif
 "GUI for gVim
 if has ('win64')
-autocmd GUIEnter * set transparency=235 " opacity
-" set guioptions-=m "hide the menubar
-set guioptions-=T " hide the toolbar
-set cursorline " set gVim Only
-set iminsert=0
+    autocmd GUIEnter * set transparency=235 " opacity
+    " set guioptions-=m "hide the menubar
+    set guioptions-=T " hide the toolbar
+    set cursorline " set gVim Only
+    set iminsert=0
 endif
 
-
+"Grep
+autocmd QuickFixCmdPost *grep* cwindow "自動的にquickfix-windowを開く
 
 " Middleware Conf
 " ------------------------------------------------------------
@@ -159,14 +161,7 @@ NeoBundle 'Shougo/neocomplcache'
     inoremap <expr><C-y>  neocomplcache#close_popup()
     inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-NeoBundle 'Shougo/vimproc', {
-  \ 'build' : {
-    \ 'windows' : 'make -f make_mingw32.mak',
-    \ 'cygwin' : 'make -f make_cygwin.mak',
-    \ 'mac' : 'make -f make_mac.mak',
-    \ 'unix' : 'make -f make_unix.mak',
-  \ },
-\ }
+NeoBundle 'Shougo/vimproc'
 NeoBundleLazy 'Shougo/vimfiler'
     " Default filer
     let g:vimfiler_as_default_explorer = 1
@@ -255,7 +250,7 @@ NeoBundle 'itchyny/lightline.vim'
         call lightline#update()
     endfunction
 NeoBundle 'jelera/vim-javascript-syntax'
-
+NeoBundle "thinca/vim-qfreplace"
 
 call neobundle#end()
 
@@ -296,4 +291,6 @@ end
 " ====================
 " Install tools
 " ====================
+" PHPLint
 " JSHint
+" make vimproc
