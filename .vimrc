@@ -1,68 +1,95 @@
-" Vim starting
+"
+" Purin's .vimrc
+"
 " --------------------------------------------------------------
-
-
-" Basic Conf
+" Initialize
 " --------------------------------------------------------------
-" $HOME
-if has ('win64')
-    let $HOME=$USERPROFILE
+" Use VIM features instead of vi
+" It causes many side effects, so you need to write the top of the ".vimrc".
+if &compatible
+  set nocompatible
 endif
-" INSERT MODE KEYBIND
+
+" Reset Autocmd group
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
+
+" .vim paths
+let $VIM_DOTVIM_DIR        = resolve(expand('~/.vim'))
+let $MYVIMRC               = resolve(expand('~/.vimrc'))
+
+let $VIM_REMOTE_BUNDLE_DIR = $VIM_DOTVIM_DIR . '/bundle'
+let $VIM_LOCAL_BUNDLE_DIR  = $VIM_DOTVIM_DIR . '/local_bundle'
+let $VIM_NEOBUNDLE_DIR     = $VIM_REMOTE_BUNDLE_DIR . '/neobundle.vim'
+
+let $VIM_SWAP_DIR          = $VIM_DOTVIM_DIR . '/tmp/swap'
+let $VIM_BACKUP_DIR        = $VIM_DOTVIM_DIR . '/tmp/backup'
+let $VIM_UNDO_DIR          = $VIM_DOTVIM_DIR . '/tmp/undo'
+
+" --------------------------------------------------------------
+" Encoding
+" --------------------------------------------------------------
+let &termencoding = &encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
+set fileformats=unix,dos,mac
+
+
+" --------------------------------------------------------------
+" Basic Sets
+" --------------------------------------------------------------
+syntax on
+set clipboard+=unnamed
+set tags=./tags; "tagsファイルを上層へ探しに行く
+
 inoremap <silent> jj <ESC>  " jj == ESC
 inoremap <silent> kk <ESC>  " kk == ESC
 
-" Backup and Swap
-set backup
-set backupdir=~/.vim/backup
-set swapfile
-set directory=~/.vim/backup
-set undofile
-set undodir=~/.vim/backup
-" Leader Key
-let mapleader = "\<Space>"
-set clipboard+=unnamed
-set backspace=indent,eol,start
-" インデント表示
-"let g:indent_guides_enable_on_vim_startup = 1
-"let g:indent_guides_start_level = 2
-"let g:indent_guides_guide_size = 1
-"let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'unite']
+let mapleader = "\<Space>"          " leader key
+set backspace=indent,eol,start      " backspace
 
 " 閉じ括弧が入力されたとき、対応する括弧を表示する
 set showmatch
 " 新しい行を作ったときに高度な自動インデントを行う
 set smartindent
-" 行番号設定
+" 行番号・行色設定
 set number
 highlight LineNr ctermfg=239
 " 編集中のファイル名を表示
 set title
-"tab設定
+" TABスペース設定
 set tabstop=4
 set autoindent
 set expandtab
 set shiftwidth=4
 " ホワイトスペース可視化
 set lcs=tab:>.,trail:-,extends:\
-" search highlight
+" Highlight serched words
 set hlsearch
+" 保存時に末尾の空白を削除
+autocmd BufWritePre * :%s/\s\+$//ge
+" Highlight selected bracket
+set showmatch
 
-autocmd BufWritePre * :%s/\s\+$//ge " 末尾の空白を削除
-set showmatch " highlight select tag
-syntax on
-if has("win64")
-    set mouse=a
-endif
+" Vim folders
+set backup
+set backupdir=~/.vim/backup
+set swapfile
+set directory=~/.vim/backup
+set undofile
+set undodir=~/.vim/backup
 
-if has("mac")
+
+" --------------------------------------------------------------
+" Set for each OS
+" --------------------------------------------------------------
+if has ('win64') || has ('win32')
+    let $HOME = $USERPROFILE
     set mouse=a
-endif
-if has("unix")
-    set mouse=v
-endif
-" font size + line height
-if has ('win64')
+    " Font
     set encoding=utf-8
     source $VIMRUNTIME/delmenu.vim
     set langmenu=ja_jp.utf-8
@@ -71,37 +98,58 @@ if has ('win64')
     set columns=150
     set lines=65
     set ambiwidth=double
-endif
-"GUI for gVim
-if has ('win64')
-    autocmd GUIEnter * set transparency=235 " opacity
-    " set guioptions-=m "hide the menubar
-    set guioptions-=T " hide the toolbar
-    set cursorline " set gVim Only
+
+    " Highlight the current line
+    set cursorline
+
+    " Disable IME when insert mode
     set iminsert=0
+
+    " -------------------------------------
+    " gVim for windows settings
+    " -------------------------------------
+    " Window opacity
+    autocmd GUIEnter * set transparency=235
+    " Show the menu bar
+    set guioptions=m
+    " Hide the tool bar
+    set guioptions-=T
+    " Show the scroll bar on 'right'
+    set guioptions=r
+endif
+if has("mac")
+    set mouse=a
+endif
+if has("unix")
+    set mouse=v
 endif
 
-"Grep
-autocmd QuickFixCmdPost *grep* cwindow "自動的にquickfix-windowを開く
+" Grepした後にquickfix-windowでGrep結果を表示
+autocmd QuickFixCmdPost *grep* cwindow
 
+
+" ------------------------------------------------------------
 " Middleware Conf
 " ------------------------------------------------------------
-
+" ---
 " PHP
+" ---
 let php_sql_query = 1
 let php_baselib = 1
 let php_htmlInStrings = 1
 let php_noShortTags = 1
 let php_parent_error_close = 1
 
+" ---
 " DB
+" ---
 let g:sql_type_default='mysql'
 
 
 " NeoBundle Set
 " ------------------------------------------------------------
-filetype off                   " Required!
 
+filetype off
 " Check NeoBundle have already been installed
 if has('vim_starting')
   if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
@@ -113,14 +161,14 @@ endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-
-filetype plugin indent on     " Required!
-
+filetype plugin indent on
 
 
 
 
-" NeoBundle Plugins
+
+
+" Plugins
 " ------------------------------------------------------------
 
 " ==========
@@ -161,15 +209,15 @@ NeoBundle 'Shougo/neocomplcache'
     inoremap <expr><C-y>  neocomplcache#close_popup()
     inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-NeoBundle 'Shougo/vimproc'
-NeoBundleLazy 'Shougo/vimfiler'
+    NeoBundle 'Shougo/vimproc'
+    NeoBundleLazy 'Shougo/vimfiler'
     " Default filer
     let g:vimfiler_as_default_explorer = 1
     " VimFilerBufferDir Key
-    nnoremap <silent> <leader>fb  :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit<CR>
+    nnoremap <silent> <leader>fb  :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit -auto-cd<CR>
     " VimExplorer Key
-    nnoremap <silent> <leader>fe  :VimFilerExplorer -split -simple -winwidth=35 -no-quit<CR>
-NeoBundle 'scrooloose/syntastic'
+    nnoremap <silent> <leader>fe  :VimFilerExplorer -split -simple -winwidth=35 -no-quit -auto-cd<CR>
+    NeoBundle 'scrooloose/syntastic'
     let g:syntastic_enable_signs=1
     let g:syntastic_auto_loc_list=2
 
@@ -191,16 +239,14 @@ NeoBundle 'scrooloose/syntastic'
 
 " FrontEnd
 NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'othree/html5.vim'
 NeoBundle 'open-browser.vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'tell-k/vim-browsereload-mac'
 NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'taichouchou2/html5.vim'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'moll/vim-node'
 NeoBundle 'nono/vim-handlebars'
-" Close Tag Comp
+" Close a tag
 autocmd FileType html inoremap <silent> <buffer> </ </<C-x><C-o>
 " emmet
 NeoBundle 'mattn/emmet-vim'
@@ -221,26 +267,28 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'Townk/vim-autoclose'
+NeoBundle 'soramugi/auto-ctags.vim'
+    let g:auto_ctags = 0
 
 "ejs syntax
 NeoBundle 'nikvdp/ejs-syntax'
-autocmd BufNewFile,BufRead *.ejs set filetype=ejs
-autocmd BufNewFile,BufRead *._ejs set filetype=ejs
+    autocmd BufNewFile,BufRead *.ejs set filetype=ejs
+    autocmd BufNewFile,BufRead *._ejs set filetype=ejs
 
-function! s:DetectEjs()
-    if getline(1) =~ '^#!.*\<ejs\>'
-        set filetype=ejs
-    endif
-endfunction
+    function! s:DetectEjs()
+        if getline(1) =~ '^#!.*\<ejs\>'
+            set filetype=ejs
+        endif
+    endfunction
 
-autocmd BufNewFile,BufRead * call s:DetectEjs()
+    autocmd BufNewFile,BufRead * call s:DetectEjs()
 
 " Vim markdown
 ":PrevimOpen
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
-au BufRead,BufNewFile *.md set filetype=markdown
+    au BufRead,BufNewFile *.md set filetype=markdown
 
 NeoBundle 'itchyny/lightline.vim'
     set laststatus=2
@@ -268,6 +316,14 @@ NeoBundle 'itchyny/lightline.vim'
     endfunction
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle "thinca/vim-qfreplace"
+
+
+NeoBundle 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 
 call neobundle#end()
 
@@ -311,3 +367,4 @@ end
 " PHPLint
 " JSHint
 " make vimproc
+" ctags
