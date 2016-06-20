@@ -76,28 +76,31 @@ set showmatch
 
 " Vim folders
 set backup
-set backupdir=~/.vim/backup
 set swapfile
-set directory=~/.vim/backup
 set undofile
-set undodir=~/.vim/backup
+set backupdir =~/.vim/backup
+set directory =~/.vim/backup
+set undodir   =~/.vim/backup
 
 
 " --------------------------------------------------------------
 " Set for each OS
 " --------------------------------------------------------------
 if has ('win64') || has ('win32')
-    let $HOME = $USERPROFILE
+  " Exchange path separator.
+   set shellslash
+
+    let $HOME     = $USERPROFILE
     set mouse=a
     " Font
-    set encoding=utf-8
     source $VIMRUNTIME/delmenu.vim
-    set langmenu=ja_jp.utf-8
     source $VIMRUNTIME/menu.vim
-    set guifont=MS\ Gothic:h10
-    set columns=150
-    set lines=65
-    set ambiwidth=double
+    set encoding=utf-8
+    set langmenu=ja_jp.utf-8
+    set guifont =MS\ Gothic:h10
+    set columns =150
+    set lines   =65
+    set ambiwidth =double
 
     " Highlight the current line
     set cursorline
