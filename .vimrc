@@ -17,8 +17,8 @@ augroup END
 
 
 " .vim paths
-let $VIM_DOTVIM_DIR        = resolve(expand('~/.vim'))
-let $MYVIMRC               = resolve(expand('~/.vimrc'))
+let $VIM_DOTVIM_DIR        = '~/.vim'
+let $MYVIMRC               = '~/.vimrc'
 
 let $VIM_REMOTE_BUNDLE_DIR = $VIM_DOTVIM_DIR . '/bundle'
 let $VIM_LOCAL_BUNDLE_DIR  = $VIM_DOTVIM_DIR . '/local_bundle'
@@ -81,6 +81,9 @@ endif
 
 if has("mac")
     set mouse=a
+    set termencoding=utf-8
+    set encoding=utf-8
+    set fileencodings=iso-2022-jp,utf-8,cp932,euc-jp
 endif
 if has("linux")
     set mouse=v
