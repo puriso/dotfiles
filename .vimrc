@@ -74,57 +74,47 @@ autocmd BufWritePre * :%s/\s\+$//ge
 " Highlight selected bracket
 set showmatch
 
-" Vim folders
-set backup
-set swapfile
-set undofile
-set backupdir =~/.vim/backup
-set directory =~/.vim/backup
-set undodir   =~/.vim/backup
-
-
-" --------------------------------------------------------------
-" Set for each OS
-" --------------------------------------------------------------
-if has ('win64') || has ('win32')
-  " Exchange path separator.
-   set shellslash
-
-    let $HOME     = $USERPROFILE
+syntax on
+if has("win64")
     set mouse=a
-    " Font
-    source $VIMRUNTIME/delmenu.vim
-    source $VIMRUNTIME/menu.vim
-    set encoding=utf-8
-    set langmenu=ja_jp.utf-8
-    set guifont =MS\ Gothic:h10
-    set columns =150
-    set lines   =65
-    set ambiwidth =double
-
-    " Highlight the current line
-    set cursorline
-
-    " Disable IME when insert mode
-    set iminsert=0
-
-    " -------------------------------------
-    " gVim for windows settings
-    " -------------------------------------
-    " Window opacity
-    autocmd GUIEnter * set transparency=235
-    " Show the menu bar
-    set guioptions=m
-    " Hide the tool bar
-    set guioptions-=T
-    " Show the scroll bar on 'right'
-    set guioptions=r
 endif
+
 if has("mac")
     set mouse=a
 endif
-if has("unix")
+if has("linux")
     set mouse=v
+    set ttymouse=xterm2
+    vmap <C-c> :w !xsel -ib<CR><CR>
+    set paste
+
+    set encoding=utf-8
+    source $VIMRUNTIME/delmenu.vim
+    set langmenu=ja_jp.utf-8
+    source $VIMRUNTIME/menu.vim
+    set guifont=MS\ Gothic:h10
+    set columns=150
+    set lines=65
+    set ambiwidth=double
+endif
+" font size + line height
+if has ('win64')
+    set encoding=utf-8
+    source $VIMRUNTIME/delmenu.vim
+    set langmenu=ja_jp.utf-8
+    source $VIMRUNTIME/menu.vim
+    set guifont=MS\ Gothic:h10
+    set columns=150
+    set lines=65
+    set ambiwidth=double
+endif
+"GUI for gVim
+if has ('win64')
+    autocmd GUIEnter * set transparency=235 " opacity
+    " set guioptions-=m "hide the menubar
+    set guioptions-=T " hide the toolbar
+    set cursorline " set gVim Only
+    set iminsert=0
 endif
 
 " Grepした後にquickfix-windowでGrep結果を表示
@@ -254,6 +244,11 @@ autocmd FileType html inoremap <silent> <buffer> </ </<C-x><C-o>
 " emmet
 NeoBundle 'mattn/emmet-vim'
     let g:user_emmet_leader_key='<c-e>'
+    let g:user_emmet_settings = {
+            \ 'variables': {
+            \ 'lang' : 'ja'
+        \ }
+    \}
 
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -331,20 +326,22 @@ nmap ga <Plug>(EasyAlign)
 call neobundle#end()
 
 " ColorSchemes
+set t_Co=256
 if has("mac")
-    set t_Co=256
-    colorscheme molokai
+    let g:lucius_style       = "dark"
+    let g:lucius_contrast    = "normal" "[low],[normal],[high]
+    let g:lucius_contrast_bg = "normal" "[normal] or [high]
+    colorscheme lucius
+    "colorscheme lmolokai
     highlight Normal ctermbg=none
 endif
-if has("unix")
-    set t_Co=256
+if has("linux")
     let g:lucius_style       = "dark"
     let g:lucius_contrast    = "normal" "[low],[normal],[high]
     let g:lucius_contrast_bg = "normal" "[normal] or [high]
     colorscheme lucius
 endif
 if has('win64')
-    set t_Co=256
     colorscheme lucius
 endif
 
