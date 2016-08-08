@@ -44,6 +44,7 @@ set lcs=tab:>.,trail:-,extends:\
 " search highlight
 set hlsearch
 
+
 autocmd BufWritePre * :%s/\s\+$//ge " 末尾の空白を削除
 set showmatch " highlight select tag
 syntax on
@@ -53,6 +54,9 @@ endif
 
 if has("mac")
     set mouse=a
+    set termencoding=utf-8
+    set encoding=utf-8
+    set fileencodings=iso-2022-jp,utf-8,cp932,euc-jp
 endif
 if has("linux")
     set mouse=v
