@@ -48,6 +48,14 @@ set tags=./tags; "tagsファイルを上層へ探しに行く
 inoremap <silent> jj <ESC>  " jj == ESC
 inoremap <silent> kk <ESC>  " kk == ESC
 
+" Backup and Swap
+set backup
+set backupdir=~/.vim/backup
+set swapfile
+set directory=~/.vim/backup
+set undofile
+set undodir=~/.vim/backup
+" Leader Key
 let mapleader = "\<Space>"          " leader key
 set backspace=indent,eol,start      " backspace
 
