@@ -34,11 +34,8 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-<<<<<<< HEAD
 # Vim 風キーバインドにする
 bindkey -v
-=======
->>>>>>> 7a86e53808e16809e60fd2dfca041931ef728f5b
 
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
