@@ -3,6 +3,11 @@
 # 環境変数
 export LANG=ja_JP.UTF-8
 
+
+
+# ゴミ箱
+alias rm='rmtrash'
+
 # 256色のカラーパレットを表示する
 target_shell=$1
 

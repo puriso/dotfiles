@@ -41,6 +41,7 @@ set fileformats=unix,dos,mac
 " --------------------------------------------------------------
 " Basic Sets
 " --------------------------------------------------------------
+source $VIMRUNTIME/macros/matchit.vim
 syntax on
 set clipboard+=unnamed
 set tags=./tags; "tagsファイルを上層へ探しに行く
