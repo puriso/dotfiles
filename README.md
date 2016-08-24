@@ -13,7 +13,7 @@ git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 # Clone my dotfiles from github
 git clone git://github.com/puriso/dotfiles ~/git/dot/
 
-# Install ctags
+# dotfiles
 ln -sf ~/git/dot/.vimrc ~/.vimrc
 ln -sf ~/git/dot/.jshintrc ~/.jshintrc
 ln -sf ~/git/dot/.zshrc ~/.zshrc
@@ -28,9 +28,13 @@ rm /Applications/MacVim.app/Contents/Resources/vim/gvimrc
 npm install -g phplint
 # JSHint
 npm install -g jshint
+# ctag
+brew install ctags
 ```
 
 ## todo
 
 構築の自動化をスマートに
+
+
 
