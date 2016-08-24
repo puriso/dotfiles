@@ -3,7 +3,14 @@
 # 環境変数
 export LANG=ja_JP.UTF-8
 
+# 設定ファイル
+source ~/.phpbrew/bashrc
 
+# MacVim kaoriya
+if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
+  alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+  alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+fi
 
 # ゴミ箱
 alias rm='rmtrash'
@@ -66,3 +73,5 @@ setopt interactive_comments
 #
 export DYLD_LIBRARY_PATH=/usr/lib/:$DYLD_LIBRARY_PATH
 
+# SVN EDITOR
+ export SVN_EDITOR=vim

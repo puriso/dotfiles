@@ -15,6 +15,9 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
+:source $VIMRUNTIME/syntax/syntax.vim
+syntax enable
+syntax on
 
 " .vim paths
 let $VIM_DOTVIM_DIR        = '~/.vim'
@@ -42,7 +45,6 @@ set fileformats=unix,dos,mac
 " Basic Sets
 " --------------------------------------------------------------
 source $VIMRUNTIME/macros/matchit.vim
-syntax on
 set clipboard+=unnamed
 set tags=./tags; "tagsファイルを上層へ探しに行く
 
@@ -83,16 +85,24 @@ autocmd BufWritePre * :%s/\s\+$//ge
 " Highlight selected bracket
 set showmatch
 
-syntax on
 if has("win64")
     set mouse=a
 endif
 
 if has("mac")
+    set ambiwidth=double
     set mouse=a
-    set termencoding=utf-8
+    if has('mouse_sgr')
+        set ttymouse=sgr
+    elseif v:version > 703 || v:version is 703 && has('patch632') " I couldn't use has('mouse_sgr') :-(
+        set ttymouse=sgr
+    else
+        set ttymouse=xterm2
+    endif
+
     set encoding=utf-8
-    set fileencodings=iso-2022-jp,utf-8,cp932,euc-jp
+    set fileencodings=utf-8
+    set fileformats=unix,dos,mac
 endif
 if has("linux")
     set mouse=v
@@ -128,6 +138,15 @@ if has ('win64')
     set cursorline " set gVim Only
     set iminsert=0
 endif
+if has('gui_macvim')
+    set showtabline=2	" タブを常に表示
+    set imdisable	" IMを無効化
+    set transparency=10	" 透明度を指定
+    set antialias
+    set guifont=Ricty:h14
+    colorscheme macvim
+endif
+
 
 " Grepした後にquickfix-windowでGrep結果を表示
 autocmd QuickFixCmdPost *grep* cwindow
@@ -373,6 +392,7 @@ if(!empty(neobundle#get_not_installed_bundle_names()))
 end
 
 
+
 " ====================
 " Install tools
 " ====================
@@ -380,3 +400,4 @@ end
 " JSHint
 " make vimproc
 " ctags
+
