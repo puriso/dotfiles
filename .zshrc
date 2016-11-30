@@ -1,11 +1,9 @@
-# License : MIT
+alias tmux='tmux -u'
 
 # 環境変数
-export LANG=ja_JP.UTF-8
-
+export PATH="/opt/local/bin:$PATH"
 # 設定ファイル
 source ~/.phpbrew/bashrc
-
 # MacVim kaoriya
 if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
   alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
@@ -14,6 +12,7 @@ fi
 
 # ゴミ箱
 alias rm='rmtrash'
+
 
 # 256色のカラーパレットを表示する
 target_shell=$1
@@ -74,4 +73,4 @@ setopt interactive_comments
 export DYLD_LIBRARY_PATH=/usr/lib/:$DYLD_LIBRARY_PATH
 
 # SVN EDITOR
- export SVN_EDITOR=vim
+export SVN_EDITOR=vim

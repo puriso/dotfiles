@@ -88,7 +88,6 @@ set showmatch
 if has("win64")
     set mouse=a
 endif
-
 if has("mac")
     set ambiwidth=double
     set mouse=a
