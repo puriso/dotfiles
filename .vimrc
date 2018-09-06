@@ -240,16 +240,18 @@ NeoBundle 'Shougo/neocomplcache'
     nnoremap <silent> <leader>fb  :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit -auto-cd<CR>
     " VimExplorer Key
     nnoremap <silent> <leader>fe  :VimFilerExplorer -split -simple -winwidth=35 -no-quit -auto-cd<CR>
+
+    NeoBundle 'ngmy/vim-rubocop'
     NeoBundle 'scrooloose/syntastic'
     let g:syntastic_enable_signs=1
     let g:syntastic_auto_loc_list=2
 
     let g:syntastic_mode_map = {
                 \ "mode" : "passive",
-                \ "active_filetypes" : ["javascript", "json","php"],
+                \ "active_filetypes" : ["javascript", "json","php","ruby"],
                 \}
     let g:syntastic_javascript_checker = "jshint"
-
+    let g:syntastic_ruby_checkers=['rubocop', 'mri']
 "    augroup AutoSyntastic
 "        autocmd!
 "        autocmd InsertLeave,TextChanged * call s:syntastic()
@@ -297,11 +299,15 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'Townk/vim-autoclose'
 NeoBundle 'soramugi/auto-ctags.vim'
     let g:auto_ctags = 0
+" vim-tags
+NeoBundle 'szw/vim-tags'
+au BufNewFile,BufRead *.php let g:vim_tags_project_tags_command = "ctags --languages=php -f ~/php.tags `pwd` 2>/dev/null &"
 
 "ejs syntax
 NeoBundle 'nikvdp/ejs-syntax'
-    autocmd BufNewFile,BufRead *.ejs set filetype=ejs
-    autocmd BufNewFile,BufRead *._ejs set filetype=ejs
+    autocmd BufNewFile,BufRead *.tpl set filetype=html
+    autocmd BufNewFile,BufRead *.ejs set filetype=html
+    autocmd BufNewFile,BufRead *._ejs set filetype=html
 
     function! s:DetectEjs()
         if getline(1) =~ '^#!.*\<ejs\>'
@@ -315,6 +321,9 @@ NeoBundle 'nikvdp/ejs-syntax'
 ":PrevimOpen
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kannokanno/previm'
+
+" 自動で折りたたまないようにする
+  let g:vim_markdown_folding_disabled=1
 NeoBundle 'tyru/open-browser.vim'
     au BufRead,BufNewFile *.md set filetype=markdown
 

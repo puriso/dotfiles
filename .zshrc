@@ -70,7 +70,19 @@ setopt interactive_comments
 
 # vim:set ft=zsh :a
 #
-export DYLD_LIBRARY_PATH=/usr/lib/:$DYLD_LIBRARY_PATH
+#export DYLD_LIBRARY_PATH=/usr/lib/:$DYLD_LIBRARY_PATH
 
 # SVN EDITOR
 export SVN_EDITOR=vim
+
+# FOR CORDOVA
+export ANDROID_HOME=/home/jenkins/android-sdk-linux
+export PATH=$PATH:${ANDROID_HOME}/platforms:${ANDROID_HOME}/tools
+
+#FOR CTAGS
+alias ctags="`brew --prefix`/bin/ctags"
+
+export PATH="/Users/kotake/.phpenv/bin:$PATH"
+eval "$(phpenv init -)"
+
+export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
