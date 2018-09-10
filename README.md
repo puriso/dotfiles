@@ -23,6 +23,10 @@ ln -sf ~/git/dot/.vimrc ~/.gvimrc
 rm /Applications/MacVim.app/Contents/Resources/vim/vimrc
 rm /Applications/MacVim.app/Contents/Resources/vim/gvimrc
 
+# Install tmux's plugins
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+
 # Install for vimrc
 # php
 npm install -g phplint

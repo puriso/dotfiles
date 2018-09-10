@@ -1,9 +1,33 @@
 alias tmux='tmux -u'
 
+
 # 環境変数
 export PATH="/opt/local/bin:$PATH"
+
+# For git
+autoload -Uz vcs_info
+zstyle ':vcs_info:git:*' check-for-changes true #formats 設定項目で %c,%u が使用可
+zstyle ':vcs_info:git:*' stagedstr "%F{green}!" #commit されていないファイルがある
+zstyle ':vcs_info:git:*' unstagedstr "%F{magenta}+" #add されていないファイルがある
+zstyle ':vcs_info:*' formats "%F{cyan}%c%u(%b)%f" #通常
+zstyle ':vcs_info:*' actionformats '[%b|%a]' #rebase 途中,merge コンフリクト等 formats 外の表示
+
+
+# PROMPT
+PROMPT="%F{2}[%n] %F{240}%~
+%f%# "
+
+function precmd() {
+  if [ ! -z $TMUX ]; then
+    tmux refresh-client -S
+  fi
+}
+
+
 # 設定ファイル
-source ~/.phpbrew/bashrc
+if [ -f ~/.phpbrew/bashrc ]; then
+    source ~/.phpbrew/bashrc
+fi
 # MacVim kaoriya
 if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
   alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
@@ -13,7 +37,6 @@ fi
 # ゴミ箱
 alias rm='rmtrash'
 
-
 # 256色のカラーパレットを表示する
 target_shell=$1
 
@@ -21,14 +44,10 @@ if [ -z "$1" ]; then
     target_shell=$(basename "$SHELL")
 fi
 
-
 # 補完機能を有効にする
 autoload -Uz compinit
 compinit
 
-# PRONPT
-PROMPT="%F{240}[%n] %~
-%f%# "
 
 # cd したら自動的にpushdする
 setopt auto_pushd
