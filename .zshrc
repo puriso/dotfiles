@@ -101,7 +101,10 @@ export PATH=$PATH:${ANDROID_HOME}/platforms:${ANDROID_HOME}/tools
 #FOR CTAGS
 alias ctags="`brew --prefix`/bin/ctags"
 
-export PATH="/Users/kotake/.phpenv/bin:$PATH"
-eval "$(phpenv init -)"
 
-export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
+if [ -f /Users/kotake/.phpenv/bin ]; then
+    export PATH="/Users/kotake/.phpenv/bin:$PATH"
+    eval "$(phpenv init -)"
+    export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
+fi
+
