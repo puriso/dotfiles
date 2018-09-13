@@ -1,10 +1,22 @@
-# KAWAII* dotfiles
+# dotfiles
 
-とても可愛いdotfileたちなのなのです👩‍❤️‍💋‍👩
+dotfiles👩‍❤️‍💋‍👩
 
-## install
+## Install
+
+# MacVimをインストール
+[https://github.com/macvim-dev/macvim/releases](https://github.com/macvim-dev/macvim/releases)
 
 ```
+brew update
+
+# Install zsh
+brew install zsh
+sudo -- sh -c 'echo '/usr/local/bin/zsh' >> /etc/shells'
+
+# Install tmux
+brew install tmux
+
 # Install NeoBundle
 mkdir -p ~/.vim/bundle
 mkdir ~/.vim/backup
@@ -36,9 +48,6 @@ npm install -g jshint
 brew install ctags
 ```
 
-## todo
-
-構築の自動化をスマートに
 
 
 
