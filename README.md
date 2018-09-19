@@ -14,8 +14,9 @@ brew update
 brew install zsh
 sudo -- sh -c 'echo '/usr/local/bin/zsh' >> /etc/shells'
 
-# Install tmux
+# Install tmux & for tmux
 brew install tmux
+brew install reattach-to-user-namespace
 
 # Install NeoBundle
 mkdir -p ~/.vim/bundle
