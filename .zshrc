@@ -54,9 +54,10 @@ alias rm='rmtrash'
 alias ctags="`brew --prefix`/bin/ctags"
 # MacVim kaoriya
 if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
-  echo "Install MacVim and Kaoriya's batch"
   alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
   alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+else
+  echo "Install MacVim and Kaoriya's batch."
 fi
 # less
 #alias -g L='| less'
