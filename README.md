@@ -4,9 +4,10 @@ dotfiles👩‍❤️‍💋‍👩
 
 ## Install
 
-# MacVimをインストール
+###  MacVimをインストール
 [https://github.com/macvim-dev/macvim/releases](https://github.com/macvim-dev/macvim/releases)
 
+### CLIでインストール
 ```
 brew update
 
