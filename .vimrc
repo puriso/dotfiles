@@ -22,21 +22,17 @@ augroup END
 let $VIM_DOTVIM_DIR        = '~/.vim'
 let $MYVIMRC               = '~/.vimrc'
 
-let $VIM_REMOTE_BUNDLE_DIR = $VIM_DOTVIM_DIR . '/bundle'
-let $VIM_LOCAL_BUNDLE_DIR  = $VIM_DOTVIM_DIR . '/local_bundle'
-let $VIM_NEOBUNDLE_DIR     = $VIM_REMOTE_BUNDLE_DIR . '/neobundle.vim'
-
 let $VIM_SWAP_DIR          = $VIM_DOTVIM_DIR . '/tmp/swap'
 let $VIM_BACKUP_DIR        = $VIM_DOTVIM_DIR . '/tmp/backup'
 let $VIM_UNDO_DIR          = $VIM_DOTVIM_DIR . '/tmp/undo'
 
 " Backup and Swap
 set backup
-set backupdir=~/.vim/backup
+set backupdir= $VIM_BACKUP_DIR
 set swapfile
-set directory=~/.vim/backup
+set directory= $VIM_SWAP_DIR
 set undofile
-set undodir=~/.vim/backup
+set undodir= $VIM_UNDO_DIR
 
 " --------------------------------------------------------------
 " ENCODING => UTF8
