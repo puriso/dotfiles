@@ -1,0 +1,52 @@
+#-------------------------------------------------------
+# GENERAL
+#-------------------------------------------------------
+# 入力補完ツール
+[[plugins]]
+repo = 'Shougo/deoplete'
+hook_source = 'let g:deoplete#enable_at_startup = 1'
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = '!has("nvim")'
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = '!has("nvim")'
+
+
+# vim 用の統合ユーザインターフェース
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+# 非同期処理
+[[plugins]]
+repo = 'Shougo/vimproc'
+
+#-------------------------------------------------------
+# Themas of Vim
+#-------------------------------------------------------
+# スキーマ着せ替えプラグイン
+[[plugins]]
+repo = 'ujihisa/unite-colorscheme'
+
+# カラースキーマ群
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
+[[plugins]]
+repo = 'croaker/mustang-vim'
+[[plugins]]
+repo = 'jeffreyiacono/vim-colors-wombat'
+[[plugins]]
+repo = 'nanotech/jellybeans.vim'
+[[plugins]]
+repo = 'vim-scripts/Lucius'
+[[plugins]]
+repo = 'vim-scripts/Zenburn'
+[[plugins]]
+repo = 'mrkn/mrkn256.vim'
+[[plugins]]
+repo = 'jpo/vim-railscasts-theme'
+[[plugins]]
+repo = 'therubymug/vim-pyte'
+[[plugins]]
+repo = 'tomasr/molokai'
+
