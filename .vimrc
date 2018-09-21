@@ -322,7 +322,7 @@ endif
 let g:lucius_style       = "dark"
 let g:lucius_contrast    = "normal" "[low],[normal],[high]
 let g:lucius_contrast_bg = "normal" "[normal] or [high]
-LuciusBlack
+:LuciusBlack
 
 " ------------------------------------------------------------------------------
 "             ('-.       .-') _                     .-')      ('-.   .-') _
