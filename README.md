@@ -29,6 +29,8 @@ git clone git://github.com/puriso/dotfiles ~/git/dot/
 
 # dotfiles
 ln -sf ~/git/dot/.vimrc ~/.vimrc
+ln -sf ~/git/dot/.dein.toml ~/.dein.toml
+ln -sf ~/git/dot/.dein_lazy.toml ~/.dein_lazy.toml
 ln -sf ~/git/dot/.jshintrc ~/.jshintrc
 ln -sf ~/git/dot/.zshrc ~/.zshrc
 ln -sf ~/git/dot/.tmux.conf ~/.tmux.conf
