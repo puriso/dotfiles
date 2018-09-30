@@ -30,33 +30,25 @@ hook_source = '''
 '''
 
 #-------------------------------------------------------
-# ファイル操作関連
-#-------------------------------------------------------
-# ファイラー
-[[plugins]]
-repo        = 'Shougo/vimfiler'
-depends     = 'unite.vim'
-hook_source = '''
-    " Default filer
-    let g:vimfiler_as_default_explorer = 1
-    " VimFilerBufferDir Key
-    nnoremap <silent> <leader>fb  :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit -auto-cd<CR>
-    " VimExplorer Key
-    nnoremap <silent> <leader>fe  :VimFilerExplorer -split -simple -winwidth=35 -no-quit -auto-cd<CR>
-    NeoBundle 'scrooloose/syntastic'
-    let g:syntastic_enable_signs=1
-    let g:syntastic_auto_loc_list=2
-
-    let g:syntastic_mode_map = {
-                \ "mode" : "passive",
-                \ "active_filetypes" : ["javascript", "json","php"],
-                \}
-    let g:syntastic_javascript_checker = "jshint"
-'''
-
-#-------------------------------------------------------
 # 入力・文字・行関連
 #-------------------------------------------------------
+# 入力補完ツール
+[[plugins]]
+repo = 'Shougo/deoplete'
+on_event = 'InsertEnter'
+hook_add = 'let g:deoplete#enable_at_startup = 1'
+# Rubyの自動補完
+[[plugins]]
+repo = 'Shougo/deoplete-rct'
+on_ft = ['ruby']
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = '!has("nvim")'
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = '!has("nvim")'
+
+
 # インデント可視化
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
@@ -144,7 +136,15 @@ on_event = 'BufRead'
 [[plugins]]
 repo = 'scrooloose/syntastic.git'
 on_event = 'BufRead'
-
+hook_source = '''
+    let g:syntastic_enable_signs=1
+    let g:syntastic_auto_loc_list=2
+    let g:syntastic_mode_map = {
+                \ "mode" : "passive",
+                \ "active_filetypes" : ["javascript", "json","php","ruby","toml"],
+                \}
+    let g:syntastic_javascript_checker = "jshint"
+'''
 
 #-------------------------------------------------------
 # BROWSER

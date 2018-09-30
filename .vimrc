@@ -22,17 +22,21 @@ augroup END
 let $VIM_DOTVIM_DIR        = '~/.vim'
 let $MYVIMRC               = '~/.vimrc'
 
+let $VIM_REMOTE_BUNDLE_DIR = $VIM_DOTVIM_DIR . '/bundle'
+let $VIM_LOCAL_BUNDLE_DIR  = $VIM_DOTVIM_DIR . '/local_bundle'
+let $VIM_NEOBUNDLE_DIR     = $VIM_REMOTE_BUNDLE_DIR . '/neobundle.vim'
+
 let $VIM_SWAP_DIR          = $VIM_DOTVIM_DIR . '/tmp/swap'
 let $VIM_BACKUP_DIR        = $VIM_DOTVIM_DIR . '/tmp/backup'
 let $VIM_UNDO_DIR          = $VIM_DOTVIM_DIR . '/tmp/undo'
 
 " Backup and Swap
 set backup
-set backupdir= $VIM_BACKUP_DIR
+set backupdir=~/.vim/backup
 set swapfile
-set directory= $VIM_SWAP_DIR
+set directory=~/.vim/backup
 set undofile
-set undodir= $VIM_UNDO_DIR
+set undodir=~/.vim/backup
 
 " --------------------------------------------------------------
 " ENCODING => UTF8
@@ -48,6 +52,9 @@ set fileformats=unix,dos,mac
 "-------------------------------------------------------------------------------
 " 編集中のファイル名を表示
 set title
+
+" 閲覧モード解除
+set modifiable
 
 " ------------------------------------------------------------------------------
 " ヤンク・ペースト
@@ -236,12 +243,17 @@ endif
 
 
 
-autocmd FileType html inoremap <silent> <buffer> </ </<C-x><C-o>
-autocmd BufNewFile,BufRead *.ejs set filetype  = ejs
-autocmd BufNewFile,BufRead *._ejs set filetype = ejs
-autocmd BufRead,BufNewFile *.md set filetype = markdown
+let g:deoplete#enable_at_startup = 1
 
 
+
+
+" Default filer
+let g:vimfiler_as_default_explorer = 1
+" VimFilerBufferDir Key
+nnoremap <silent> <leader>fb  :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit -auto-cd<CR>
+" VimExplorer Key
+nnoremap <silent> <leader>fe  :VimFilerExplorer -split -simple -winwidth=35 -no-quit -auto-cd<CR>
 
 
 
@@ -256,7 +268,14 @@ autocmd BufRead,BufNewFile *.md set filetype = markdown
 "  |      |   |  | |  ||  | \   |  |  '--'  | \       /
 "  `------'   `--' `--'`--'  `--'   `------'   `-----'
 " ------------------------------------------------------------------------------
-"
+
+"-------------------------------------------------------------------------------
+" HTML
+"-------------------------------------------------------------------------------
+autocmd FileType html inoremap <silent> <buffer> </ </<C-x><C-o>
+autocmd BufNewFile,BufRead *.ejs set filetype  = ejs
+autocmd BufNewFile,BufRead *._ejs set filetype = ejs
+
 "-------------------------------------------------------------------------------
 " MySQL
 "-------------------------------------------------------------------------------
@@ -274,6 +293,7 @@ let php_parent_error_close = 1
 "-------------------------------------------------------------------------------
 " Markdown
 "-------------------------------------------------------------------------------
+autocmd BufRead,BufNewFile *.md set filetype = markdown
 "自動折りたたみ(0:あり,1:禁止)
 let g:vim_markdown_folding_disabled=1
 

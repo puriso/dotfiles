@@ -165,6 +165,12 @@ if [ -f /Users/kotake/.phpenv/bin ]; then
 fi
 
 # -----------------------------------------
+# Ruby
+# -----------------------------------------
+export PATH="$HOME/.rbenv/shims:$PATH"
+eval "$(rbenv init -)"
+
+# -----------------------------------------
 # Apache Cordova
 # -----------------------------------------
 export ANDROID_HOME=/home/jenkins/android-sdk-linux

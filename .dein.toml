@@ -1,26 +1,24 @@
 #-------------------------------------------------------
 # GENERAL
 #-------------------------------------------------------
-# 入力補完ツール
-[[plugins]]
-repo = 'Shougo/deoplete'
-hook_source = 'let g:deoplete#enable_at_startup = 1'
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-if = '!has("nvim")'
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-if = '!has("nvim")'
 
-
+#-------------------------------------------------------
+# ファイル操作関連
+#-------------------------------------------------------
 # vim 用の統合ユーザインターフェース
 [[plugins]]
 repo = 'Shougo/unite.vim'
 
+# ファイラー
+[[plugins]]
+repo        = 'Shougo/vimfiler'
+hook_source = '''
+'''
 # 非同期処理
 [[plugins]]
 repo = 'Shougo/vimproc'
-
+build = 'make'
+hook_post_update = 'call delphinus#init#vimproc#hook_post_update()'
 #-------------------------------------------------------
 # Themas of Vim
 #-------------------------------------------------------

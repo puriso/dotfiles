@@ -19,10 +19,9 @@ sudo -- sh -c 'echo '/usr/local/bin/zsh' >> /etc/shells'
 brew install tmux
 brew install reattach-to-user-namespace
 
-# Install NeoBundle
+# Vim
 mkdir -p ~/.vim/bundle
 mkdir ~/.vim/backup
-git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 
 # Clone my dotfiles from github
 git clone git://github.com/puriso/dotfiles ~/git/dot/
