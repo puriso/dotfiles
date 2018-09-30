@@ -365,5 +365,3 @@ syntax on
 " ====================
 " PHPLint
 " JSHint
-" make vimproc
-" ctags

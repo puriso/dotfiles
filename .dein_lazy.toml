@@ -33,20 +33,20 @@ hook_source = '''
 # 入力・文字・行関連
 #-------------------------------------------------------
 # 入力補完ツール
-[[plugins]]
-repo = 'Shougo/deoplete'
-on_event = 'InsertEnter'
-hook_add = 'let g:deoplete#enable_at_startup = 1'
-# Rubyの自動補完
-[[plugins]]
-repo = 'Shougo/deoplete-rct'
-on_ft = ['ruby']
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-if = '!has("nvim")'
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-if = '!has("nvim")'
+#[[plugins]]
+#repo = 'Shougo/deoplete'
+#on_event = 'InsertEnter'
+#hook_add = 'let g:deoplete#enable_at_startup = 1'
+## Rubyの自動補完
+#[[plugins]]
+#repo = 'Shougo/deoplete-rct'
+#on_ft = ['ruby']
+#[[plugins]]
+#repo = 'roxma/nvim-yarp'
+#if = '!has("nvim")'
+#[[plugins]]
+#repo = 'roxma/vim-hug-neovim-rpc'
+#if = '!has("nvim")'
 
 
 # インデント可視化
