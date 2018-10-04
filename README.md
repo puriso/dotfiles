@@ -51,6 +51,9 @@ npm install -g jshint
 brew install ctags
 ```
 
-
+### デフォルトシェル変更
+```
+chsh -s /usr/local/bin/zsh # その後ターミナル再起動
+```
 
 
