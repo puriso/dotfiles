@@ -241,12 +241,7 @@ if dein#check_install()
   call dein#install()
 endif
 
-
-
 let g:deoplete#enable_at_startup = 1
-
-
-
 
 " Default filer
 let g:vimfiler_as_default_explorer = 1
@@ -255,6 +250,30 @@ nnoremap <silent> <leader>fb  :<C-u>VimFilerBufferDir -split -simple -winwidth=3
 " VimExplorer Key
 nnoremap <silent> <leader>fe  :VimFilerExplorer -split -simple -winwidth=35 -no-quit -auto-cd<CR>
 
+" Options of itchyny/lightline.vim
+set laststatus=2
+let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'right': [ [ 'syntastic', 'lineinfo' ],
+    \              [ 'percent' ],
+    \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \ },
+    \ 'component_expand': {
+    \   'syntastic': 'SyntasticStatuslineFlag',
+    \ },
+    \ 'component_type': {
+    \   'syntastic': 'error',
+    \ }
+    \ }
+augroup AutoSyntastic
+    autocmd!
+    autocmd BufWritePost *.c,*.cpp call s:syntastic()
+augroup END
+function! s:syntastic()
+    SyntasticCheck
+    call lightline#update()
+endfunction
 
 
 " ------------------------------------------------------------------------------
