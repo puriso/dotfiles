@@ -146,6 +146,12 @@ hook_source = '''
     let g:syntastic_javascript_checker = "jshint"
 '''
 
+# Rails 静的コード解析ツール :RuboCop
+[[plugins]]
+repo = 'ngmy/vim-rubocop'
+on_event = 'BufRead'
+
+
 #-------------------------------------------------------
 # BROWSER
 #-------------------------------------------------------
