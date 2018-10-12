@@ -29,6 +29,7 @@ hook_source = '''
     endfunction
 '''
 
+
 #-------------------------------------------------------
 # 入力・文字・行関連
 #-------------------------------------------------------
@@ -150,6 +151,12 @@ hook_source = '''
 [[plugins]]
 repo = 'ngmy/vim-rubocop'
 on_event = 'BufRead'
+
+#
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+on_event = 'BufRead'
+on_ft    = 'coffee'
 
 
 #-------------------------------------------------------

@@ -295,6 +295,14 @@ autocmd FileType html inoremap <silent> <buffer> </ </<C-x><C-o>
 autocmd BufNewFile,BufRead *.ejs set filetype  = ejs
 autocmd BufNewFile,BufRead *._ejs set filetype = ejs
 
+
+"-------------------------------------------------------------------------------
+" JavaScript
+"-------------------------------------------------------------------------------
+" CoffeeScript
+au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
+
 "-------------------------------------------------------------------------------
 " MySQL
 "-------------------------------------------------------------------------------
@@ -308,6 +316,12 @@ let php_baselib = 1
 let php_htmlInStrings = 1
 let php_noShortTags = 1
 let php_parent_error_close = 1
+
+"-------------------------------------------------------------------------------
+" Ruby on Rails
+"-------------------------------------------------------------------------------
+au BufRead,BufNewFile,BufReadPre *.rb   set filetype=ruby
+autocmd FileType ruby    setlocal sw=2 sts=2 ts=2 et
 
 "-------------------------------------------------------------------------------
 " Markdown

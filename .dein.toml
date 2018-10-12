@@ -1,13 +1,13 @@
 #-------------------------------------------------------
 # GENERAL
 #-------------------------------------------------------
-#[[plugins]]
-#repo = 'Lokaltog/vim-powerline'
-
 [[plugins]]
-repo = 'itchyny/lightline.vim'
-hook_source = '''
-'''
+repo = 'Lokaltog/vim-powerline'
+
+#[[plugins]]
+#repo = 'itchyny/lightline.vim'
+#hook_source = '''
+#'''
 
 
 #-------------------------------------------------------
@@ -27,6 +27,13 @@ hook_source = '''
 repo = 'Shougo/vimproc'
 build = 'make'
 hook_post_update = 'call delphinus#init#vimproc#hook_post_update()'
+
+# ファイル検索
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+
+
+
 #-------------------------------------------------------
 # Themas of Vim
 #-------------------------------------------------------

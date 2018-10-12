@@ -12,6 +12,7 @@ dotfiles👩‍❤️‍💋‍👩
 brew update
 
 # Install for zsh
+brew install colordiff
 brew install rmtrash
 brew install zsh
 sudo -- sh -c 'echo '/usr/local/bin/zsh' >> /etc/shells'

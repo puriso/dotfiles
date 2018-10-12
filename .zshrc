@@ -63,7 +63,12 @@ fi
 #alias -g L='| less'
 # grep
 alias -g G='| grep'
-
+# diff
+if [[ -x `which colordiff` ]]; then
+  alias diff='colordiff -u'
+else
+  alias diff='diff -u'
+fi
 
 # ---------------------------------------------------------------------------------------
 #.-. .-')     ('-.                .-')
@@ -175,3 +180,4 @@ eval "$(rbenv init -)"
 # -----------------------------------------
 export ANDROID_HOME=/home/jenkins/android-sdk-linux
 export PATH=$PATH:${ANDROID_HOME}/platforms:${ANDROID_HOME}/tools
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
