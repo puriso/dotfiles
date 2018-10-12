@@ -1,33 +1,6 @@
 #-------------------------------------------------------
 # ステータスライン表示設定
 #-------------------------------------------------------
-[[plugins]]
-repo        = 'itchyny/lightline.vim'
-hook_source = '''
-    set laststatus=2
-    let g:lightline = {
-        \ 'colorscheme': 'wombat',
-        \ 'active': {
-        \   'right': [ [ 'syntastic', 'lineinfo' ],
-        \              [ 'percent' ],
-        \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
-        \ },
-        \ 'component_expand': {
-        \   'syntastic': 'SyntasticStatuslineFlag',
-        \ },
-        \ 'component_type': {
-        \   'syntastic': 'error',
-        \ }
-        \ }
-    augroup AutoSyntastic
-        autocmd!
-        autocmd BufWritePost *.c,*.cpp call s:syntastic()
-    augroup END
-    function! s:syntastic()
-        SyntasticCheck
-        call lightline#update()
-    endfunction
-'''
 
 
 #-------------------------------------------------------

@@ -163,7 +163,7 @@ endif
 " Leader Key
 let mapleader = "\<Space>"
 
-" 挿入モードでバックスペースやCtrl-hを押しても何も反応がない場合の対処法
+" 挿入ã¢ードでバックスペースやCtrl-hを押しても何も反応がない場合の対処法
 set backspace=indent,eol,start
 
 " jj,kk = ESC
@@ -320,7 +320,7 @@ let php_parent_error_close = 1
 "-------------------------------------------------------------------------------
 " Ruby on Rails
 "-------------------------------------------------------------------------------
-au BufRead,BufNewFile,BufReadPre *.rb   set filetype=ruby
+" au BufRead,BufNewFile,BufReadPre *.rb   set filetype=ruby
 autocmd FileType ruby    setlocal sw=2 sts=2 ts=2 et
 
 "-------------------------------------------------------------------------------
@@ -372,6 +372,12 @@ let g:lucius_style       = "dark"
 let g:lucius_contrast    = "normal" "[low],[normal],[high]
 let g:lucius_contrast_bg = "normal" "[normal] or [high]
 :LuciusBlack
+
+let g:airline#extensions#statusline#enabled = 1
+let g:airline#extensions#statusline#buffer_idx_mode = 1
+"let g:airline_theme='papercolor' "落ち着いた色調が好き
+
+let g:airline#extensions#branch#enabled = 1
 
 " ------------------------------------------------------------------------------
 "             ('-.       .-') _                     .-')      ('-.   .-') _

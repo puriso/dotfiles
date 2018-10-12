@@ -1,14 +1,14 @@
 #-------------------------------------------------------
 # GENERAL
 #-------------------------------------------------------
-[[plugins]]
-repo = 'Lokaltog/vim-powerline'
-
 #[[plugins]]
-#repo = 'itchyny/lightline.vim'
-#hook_source = '''
-#'''
+#repo = 'Lokaltog/vim-powerline'
 
+# for Powrlines
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
 
 #-------------------------------------------------------
 # ファイル操作関連
