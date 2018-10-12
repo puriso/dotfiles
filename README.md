@@ -25,6 +25,13 @@ brew install reattach-to-user-namespace
 mkdir -p ~/.vim/bundle
 mkdir ~/.vim/backup
 
+# Font
+brew update
+brew uninstall ricty
+brew tap sanemat/font
+brew install --vim-powerline ricty
+cp -f /usr/local/Cellar/ricty/3.2.3/share/fonts/Ricty*.ttf ~/Library/Fonts/
+
 # Clone my dotfiles from github
 git clone git://github.com/puriso/dotfiles ~/git/dot/
 
