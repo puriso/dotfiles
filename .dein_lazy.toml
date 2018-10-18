@@ -23,17 +23,14 @@
 #if = '!has("nvim")'
 
 
-# インデント可視化
-[[plugins]]
-repo = 'nathanaelkane/vim-indent-guides'
-
 # クオートや括弧の自動補完
-[[plugins]]
-repo = 'Townk/vim-autoclose'
+#[[plugins]]
+#Repo = 'Townk/vim-autoclose'
 
 # テキスト整形
 [[plugins]]
 repo        = 'junegunn/vim-easy-align'
+on_event = 'BufRead'
 hook_source = '''
     " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
     vmap <Enter> <Plug>(EasyAlign)
@@ -56,6 +53,7 @@ repo = "thinca/vim-qfreplace"
 # Tagsファイル作成コマンド
 [[plugins]]
 repo = 'soramugi/auto-ctags.vim'
+on_event = 'BufRead'
 hook_source = '''
     "0:自動作成無効 1:自動作成有効
     let g:auto_ctags = 1
@@ -138,6 +136,8 @@ on_ft    = 'coffee'
 # ブラウザ自動リロード
 [[plugins]]
 repo = 'tell-k/vim-browsereload-mac'
+on_event = 'BufRead'
+on_ft    = 'markdown'
 if   = 'has("mac")'
 
 # Markdown閲覧
