@@ -25,6 +25,14 @@ brew install reattach-to-user-namespace
 mkdir -p ~/.vim/bundle
 mkdir ~/.vim/backup
 
+## Install for plugins of vim
+### Dein (read detail: https://github.com/Shougo/deoplete.nvim)
+pip3 install neovim
+pip3 install --upgrade neovim
+### For ruby
+gem install solargraph
+pip install solargraph-utils.py --user
+
 # Font
 brew update
 brew uninstall ricty
