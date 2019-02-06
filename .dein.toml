@@ -23,6 +23,12 @@ repo = 'vim-airline/vim-airline-themes'
 [[plugins]]
 repo = 'Shougo/unite.vim'
 
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+if   = "has('python3')"
+hook_source = '''
+'''
+
 # ファイラー
 [[plugins]]
 repo        = 'Shougo/vimfiler'

@@ -400,6 +400,8 @@ syntax enable
 syntax on
 
 
+nnoremap <C-l> :<C-u>Denite file_rec<CR>
+nnoremap <C-g> :<C-u>Denite grep<CR>
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " ====================
