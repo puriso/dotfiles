@@ -12,6 +12,7 @@
 # ---------------------------------------------------------------------------------------
 # 環境変数
 export PATH="/opt/local/bin:$PATH"
+export PATH="$PATH:/usr/local/Caskroom/"
 # '#' 以降をコメントとして扱う
 setopt interactive_comments
 # Ctrl+Dでzshを終了しない
