@@ -24,7 +24,6 @@ let $MYVIMRC               = '~/.vimrc'
 
 let $VIM_REMOTE_BUNDLE_DIR = $VIM_DOTVIM_DIR . '/bundle'
 let $VIM_LOCAL_BUNDLE_DIR  = $VIM_DOTVIM_DIR . '/local_bundle'
-let $VIM_NEOBUNDLE_DIR     = $VIM_REMOTE_BUNDLE_DIR . '/neobundle.vim'
 
 let $VIM_SWAP_DIR          = $VIM_DOTVIM_DIR . '/tmp/swap'
 let $VIM_BACKUP_DIR        = $VIM_DOTVIM_DIR . '/tmp/backup'
@@ -327,6 +326,12 @@ autocmd FileType ruby    setlocal sw=2 sts=2 ts=2 et
 autocmd BufRead,BufNewFile *.md set filetype = markdown
 "自動折りたたみ(0:あり,1:禁止)
 let g:vim_markdown_folding_disabled=1
+
+"-------------------------------------------------------------------------------
+" Others
+"-------------------------------------------------------------------------------
+" au BufRead,BufNewFile,BufReadPre *.rb   set filetype=ruby
+autocmd FileType yml    setlocal sw=2 sts=2 ts=2 et
 
 " ------------------------------------------------------------------------------
 "             ('-.                                          .-') _
