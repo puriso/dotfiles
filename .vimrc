@@ -106,10 +106,10 @@ endif
 " タブ・インデント
 "-------------------------------------------------------------------------------
 " TABスペース設定
-set tabstop=4
+set tabstop=2
 set autoindent
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 
 " ホワイトスペース可視化
 set lcs=tab:>.,trail:-,extends:\
