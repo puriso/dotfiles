@@ -109,7 +109,7 @@ endif
 set tabstop=2
 set autoindent
 set expandtab
-set shiftwidth=2
+set shiftwidth=r
 
 " ホワイトスペース可視化
 set lcs=tab:>.,trail:-,extends:\
@@ -400,8 +400,7 @@ syntax enable
 syntax on
 
 
-nnoremap <C-l> :<C-u>Denite file_rec<CR>
-nnoremap <C-g> :<C-u>Denite grep<CR>
+nnoremap <C-g> :<C-u>Denite file_rec<CR>
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " ====================
