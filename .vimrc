@@ -109,7 +109,7 @@ endif
 set tabstop=2
 set autoindent
 set expandtab
-set shiftwidth=r
+set shiftwidth=2
 
 " ホワイトスペース可視化
 set lcs=tab:>.,trail:-,extends:\
