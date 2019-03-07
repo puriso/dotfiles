@@ -41,17 +41,18 @@ brew install --vim-powerline ricty
 cp -f /usr/local/Cellar/ricty/3.2.3/share/fonts/Ricty*.ttf ~/Library/Fonts/
 
 # Clone my dotfiles from github
-git clone git://github.com/puriso/dotfiles ~/git/dot/
+git clone git://github.com/puriso/dotfiles ~/git/dotfiles/
 
 # dotfiles
-ln -sf ~/git/dot/.vimrc ~/.vimrc
-ln -sf ~/git/dot/.dein.toml ~/.dein.toml
-ln -sf ~/git/dot/.dein_lazy.toml ~/.dein_lazy.toml
-ln -sf ~/git/dot/.jshintrc ~/.jshintrc
-ln -sf ~/git/dot/.zshrc ~/.zshrc
-ln -sf ~/git/dot/.tmux.conf ~/.tmux.conf
+ln -sf ~/git/dotfiles/.vimrc ~/.vimrc
+ln -sf ~/git/dotfiles/.dein.toml ~/.dein.toml
+ln -sf ~/git/dotfiles/.dein_lazy.toml ~/.dein_lazy.toml
+ln -sf ~/git/dotfiles/.jshintrc ~/.jshintrc
+ln -sf ~/git/dotfiles/.zshrc ~/.zshrc
+ln -sf ~/git/dotfiles/.tmux.conf ~/.tmux.conf
+ln -sf ~/git/dotfiles/.gitconfig ~/.gitconfig
 mv ~/.gvimrc ~/.gvimrc_original
-ln -sf ~/git/dot/.vimrc ~/.gvimrc
+ln -sf ~/git/dotfiles/.vimrc ~/.gvimrc
 rm /Applications/MacVim.app/Contents/Resources/vim/vimrc
 rm /Applications/MacVim.app/Contents/Resources/vim/gvimrc
 
