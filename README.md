@@ -37,7 +37,7 @@ pip install solargraph-utils.py --user
 brew update
 brew uninstall ricty
 brew tap sanemat/font
-brew install --vim-powerline ricty
+brew install ricty --with-powerline
 cp -f /usr/local/Cellar/ricty/3.2.3/share/fonts/Ricty*.ttf ~/Library/Fonts/
 
 # Clone my dotfiles from github
