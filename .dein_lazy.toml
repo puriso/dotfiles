@@ -107,8 +107,13 @@ on_event = 'BufRead'
 [[plugins]]
 repo     = 'nikvdp/ejs-syntax'
 on_event = 'BufRead'
-on_event = 'BufRead'
 on_ft    = 'ejs'
+
+# Pug Syntax
+repo     = 'digitaltoad/vim-pug'
+on_event = 'BufRead'
+on_ft    = 'pug'
+
 
 # JavaScript Syntax
 [[plugins]]
