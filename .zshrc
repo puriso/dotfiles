@@ -181,4 +181,6 @@ eval "$(rbenv init -)"
 # -----------------------------------------
 export ANDROID_HOME=/home/jenkins/android-sdk-linux
 export PATH=$PATH:${ANDROID_HOME}/platforms:${ANDROID_HOME}/tools
-export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export PATH=$PATH:./node_modules/.bin

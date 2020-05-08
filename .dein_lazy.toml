@@ -139,12 +139,17 @@ hook_source = '''
 repo = 'ngmy/vim-rubocop'
 on_event = 'BufRead'
 
-#
+# Coffee
 [[plugins]]
 repo = 'kchmck/vim-coffee-script'
 on_event = 'BufRead'
 on_ft    = 'coffee'
 
+# Vue
+[[plugins]]
+repo = 'posva/vim-vue'
+on_event = 'BufRead'
+on_ft    = 'vue'
 
 #-------------------------------------------------------
 # BROWSER
