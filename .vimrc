@@ -319,6 +319,7 @@ let php_parent_error_close = 1
 "-------------------------------------------------------------------------------
 " au BufRead,BufNewFile,BufReadPre *.rb   set filetype=ruby
 autocmd FileType ruby    setlocal sw=2 sts=2 ts=2 et
+autocmd BufNewFile,BufRead *.cap setlocal ft=ruby  fenc=utf-8
 
 "-------------------------------------------------------------------------------
 " Markdown
@@ -408,3 +409,11 @@ nnoremap <C-g> :<C-u>Denite file_rec<CR>
 " ====================
 " PHPLint
 " JSHint
+if executable('typescript-language-server')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+        \ 'whitelist': ['typescript', 'typescriptreact'],
+        \ })
+endif

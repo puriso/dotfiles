@@ -89,3 +89,12 @@ repo = 'therubymug/vim-pyte'
 [[plugins]]
 repo = 'tomasr/molokai'
 
+#-------------------------------------------------------
+# LSP
+#-------------------------------------------------------
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+

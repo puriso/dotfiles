@@ -184,7 +184,14 @@ export PATH=$PATH:${ANDROID_HOME}/platforms:${ANDROID_HOME}/tools
 
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 export PATH=$PATH:./node_modules/.bin
+export PATH="$HOME/.nodenv/bin:$PATH"
+eval "$(nodenv init -)"
 
 export PATH=/Library/Frameworks/Python.framework/Versions/3.8/bin:$PATH
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
+export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+
+eval "$(anyenv init -)"
