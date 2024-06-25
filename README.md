@@ -17,9 +17,8 @@ brew install rmtrash
 brew install zsh
 sudo -- sh -c 'echo '/usr/local/bin/zsh' >> /etc/shells'
 
-# Install tmux & for tmux
+# Install tmux
 brew install tmux
-brew install reattach-to-user-namespace
 
 # Vim
 mkdir -p ~/.vim/bundle
