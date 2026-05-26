@@ -37,8 +37,8 @@ jobs:
 
       - name: Check tmux config
         run: |
-          tmux -f .tmux.conf start-server
-          tmux kill-server
+          tmux -f .tmux.conf new-session -d -s ci_dotfiles_check
+          tmux -f .tmux.conf kill-server
 
       - name: Check vim config
         run: |
