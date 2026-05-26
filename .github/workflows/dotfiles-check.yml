@@ -1,0 +1,45 @@
+name: Dotfiles Check
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lint-dotfiles:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install required packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zsh tmux vim
+
+      - name: Check shell scripts syntax
+        run: |
+          bash -n .bash_profile
+          bash -n installer.sh
+          zsh -n .zshrc
+
+      - name: Check JSON format
+        run: |
+          python3 -m json.tool .jshintrc > /dev/null
+
+      - name: Check gitconfig format
+        run: |
+          git config -f .gitconfig --list > /dev/null
+
+      - name: Check tmux config
+        run: |
+          tmux -f .tmux.conf start-server
+          tmux kill-server
+
+      - name: Check vim config
+        run: |
+          vim -Nu NONE -n -es -c "source .vimrc" -c "qa!"
