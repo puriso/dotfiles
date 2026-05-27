@@ -19,21 +19,7 @@ repo = 'vim-airline/vim-airline-themes'
 #-------------------------------------------------------
 # ファイル操作関連
 #-------------------------------------------------------
-# vim 用の統合ユーザインターフェース
-[[plugins]]
-repo = 'Shougo/unite.vim'
-
-[[plugins]]
-repo = 'Shougo/denite.nvim'
-if   = "has('python3')"
-hook_source = '''
-'''
-
-# ファイラー
-[[plugins]]
-repo        = 'Shougo/vimfiler'
-hook_source = '''
-'''
+# サイドバー系・高機能UIプラグインは使わない
 # 非同期処理
 [[plugins]]
 repo = 'Shougo/vimproc'
@@ -63,11 +49,11 @@ let g:ctrlp_custom_ignore = {
 #-------------------------------------------------------
 # Themas of Vim
 #-------------------------------------------------------
-# スキーマ着せ替えプラグイン
-[[plugins]]
-repo = 'ujihisa/unite-colorscheme'
-
 # カラースキーマ群
+# VSCode Dark+ 風テーマ
+[[plugins]]
+repo = 'tomasiser/vim-code-dark'
+
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
 [[plugins]]

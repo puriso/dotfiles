@@ -240,12 +240,6 @@ if dein#check_install()
   call dein#install()
 endif
 
-" Default filer
-let g:vimfiler_as_default_explorer = 1
-" VimFilerBufferDir Key
-nnoremap <silent> <leader>fb  :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -no-quit -auto-cd<CR>
-" VimExplorer Key
-nnoremap <silent> <leader>fe  :VimFilerExplorer -split -simple -winwidth=35 -no-quit -auto-cd<CR>
 
 " Options of itchyny/lightline.vim
 set laststatus=2
@@ -353,8 +347,8 @@ set t_Co=256
 
 " 各種設定
 if has("mac")
-    colorscheme lucius
-    "colorscheme lmolokai
+    " VSCode Dark+ に近いテーマを利用
+    colorscheme codedark
     highlight Normal ctermbg=none
 elseif has('gui_macvim')
     set showtabline=2	" タブを常に表示
@@ -375,7 +369,7 @@ endif
 let g:lucius_style       = "dark"
 let g:lucius_contrast    = "normal" "[low],[normal],[high]
 let g:lucius_contrast_bg = "normal" "[normal] or [high]
-:LuciusBlack
+" Lucius は未使用
 
 let g:airline#extensions#statusline#enabled = 1
 let g:airline#extensions#statusline#buffer_idx_mode = 1
@@ -389,7 +383,6 @@ syntax enable
 syntax on
 
 
-nnoremap <C-g> :<C-u>Denite file_rec<CR>
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ END ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 " ====================
