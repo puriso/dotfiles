@@ -86,7 +86,7 @@ format = "[$symbol$context ]($style)"
 disabled = false
 symbol = "☸ "
 style = "bold blue"
-format = "[$symbol$context( \($namespace\)) ]($style)"
+format = "[$symbol$context( \\($namespace\\)) ]($style)"
 
 [aws]
 symbol = " "
