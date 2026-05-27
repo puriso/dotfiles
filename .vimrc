@@ -204,6 +204,17 @@ set tags=./tags; "tagsファイルを上層へ探しに行く
 " Dein.vim 自動インストール
 "-------------------------------------------------------------------------------
 filetype off
+
+" 利用可能なシェルへフォールバック（古い /usr/local/bin/zsh を避ける）
+if !executable(&shell)
+  if executable('/opt/homebrew/bin/zsh')
+    set shell=/opt/homebrew/bin/zsh
+  elseif executable('/bin/zsh')
+    set shell=/bin/zsh
+  elseif executable('/bin/bash')
+    set shell=/bin/bash
+  endif
+endif
 if has('vim_starting')
   if !isdirectory(expand("~/.cache/dein"))
     echo "install 'dein.vim'..."
@@ -220,7 +231,7 @@ filetype plugin indent on
 "-------------------------------------------------------------------------------
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-if dein#load_state('~/.cache/dein')
+if exists('*dein#load_state') && dein#load_state('~/.cache/dein')
  call dein#begin('~/.cache/dein')
  "----------------------------------------
  " 設定START
@@ -236,7 +247,7 @@ if dein#load_state('~/.cache/dein')
 endif
 
 " プラグインの自動インストール
-if dein#check_install()
+if exists('*dein#check_install') && dein#check_install()
   call dein#install()
 endif
 
