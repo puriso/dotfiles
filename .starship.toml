@@ -1,5 +1,4 @@
 add_newline = true
-
 format = """
 $username$hostname $directory$git_branch$git_status\n$character
 """
@@ -7,23 +6,24 @@ $username$hostname $directory$git_branch$git_status\n$character
 [username]
 show_always = true
 style_user = "green"
-format = "[$user]($style)"
+format = '[\[$user\]]($style)'
 
 [hostname]
 ssh_only = false
 style = "green"
-format = "[($hostname)]($style)"
+format = ""
 trim_at = "."
 
 [directory]
 style = "bright-black"
-format = " [$path]($style)"
+format = "[$path]($style)"
 truncation_length = 0
+truncate_to_repo = false
 
 [git_branch]
 symbol = ""
-style = "cyan"
-format = "[$branch]($style)"
+style = "bright-black"
+format = " [\\($branch\\)]($style)"
 
 [git_status]
 style = "cyan"
