@@ -39,8 +39,11 @@ alias ctags="`brew --prefix`/bin/ctags"
 if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
   alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
   alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+elif command -v mvim >/dev/null 2>&1; then
+  alias vi='env LANG=ja_JP.UTF-8 mvim -v "$@"'
+  alias vim='env LANG=ja_JP.UTF-8 mvim -v "$@"'
 else
-  echo "Install MacVim and Kaoriya's batch."
+  echo "MacVim が未導入です。必要に応じて MacVim と Kaoriya のバッチを導入してください。"
 fi
 # less
 #alias -g L='| less'
@@ -112,7 +115,9 @@ fi
 # Ruby
 # -----------------------------------------
 export PATH="$HOME/.rbenv/shims:$PATH"
-eval "$(rbenv init -)"
+if command -v rbenv >/dev/null 2>&1; then
+  eval "$(rbenv init -)"
+fi
 
 # -----------------------------------------
 # Apache Cordova
@@ -123,7 +128,9 @@ export PATH=$PATH:${ANDROID_HOME}/platforms:${ANDROID_HOME}/tools
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 export PATH=$PATH:./node_modules/.bin
 export PATH="$HOME/.nodenv/bin:$PATH"
-eval "$(nodenv init -)"
+if command -v nodenv >/dev/null 2>&1; then
+  eval "$(nodenv init -)"
+fi
 
 export PATH=/Library/Frameworks/Python.framework/Versions/3.8/bin:$PATH
 export PYENV_ROOT="$HOME/.pyenv"
@@ -132,7 +139,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
 export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
 
-eval "$(anyenv init -)"
+if command -v anyenv >/dev/null 2>&1; then
+  eval "$(anyenv init -)"
+fi
 
 # -----------------------------------------
 # tmux 関数（Starship確認つき）
