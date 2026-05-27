@@ -61,13 +61,10 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Install for vimrc
 # php
 npm install -g phplint
-# ctag
-brew install ctags
 ```
 
 ### デフォルトシェル変更
 ```
 chsh -s /usr/local/bin/zsh # その後ターミナル再起動
 ```
-
 
