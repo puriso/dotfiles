@@ -74,6 +74,14 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 tmux 起動後に `prefix + I` でプラグインをインストールしてください。
 
+
+
+### dark2026 公式テーマについて
+
+- 公式リポジトリ: https://github.com/D0nw0r/dark2026.nvim
+- この dotfiles では Vim 互換のため `colors/dark2026.vim` を同梱しています。
+- Neovim 側で公式テーマをそのまま使う場合は、上記リポジトリの手順に従って導入してください。
+
 ## Vim の方針
 
 - プラグインマネージャ（dein.vim）は使用しません。
