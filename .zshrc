@@ -195,3 +195,10 @@ export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
 export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
 
 eval "$(anyenv init -)"
+
+# -----------------------------------------
+# tmux 関数（設定の再読み込み用）
+# -----------------------------------------
+tmux() {
+  command tmux source-file ~/.tmux.conf
+}
