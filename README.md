@@ -4,16 +4,16 @@
 
 ## 対応環境
 
-- macOS（Homebrew 利用を想定）
+- macOS / Linux
 - zsh
 - tmux
-- Vim / MacVim
+- Vim
 
 ## 含まれている主な設定
 
 - `.zshrc`（エイリアス、各種 PATH、Starship 初期化など）
-- `.vimrc`（基本設定、dein.vim によるプラグイン管理）
-- `.dein.toml` / `.dein_lazy.toml`（Vim プラグイン定義）
+- `.vimrc`（プラグインなし最小構成 + `dark2026` テーマ読込）
+- `colors/dark2026.vim`（Vim カラースキーマ）
 - `.tmux.conf`（キーバインド、TPM プラグイン設定）
 - `.starship.toml`（プロンプト表示設定）
 - `.gitconfig`（Git エイリアス）
@@ -23,13 +23,14 @@
 ### 1. 依存ツールのインストール
 
 ```bash
+# macOS (Homebrew)
 brew update
 brew install zsh tmux starship colordiff rmtrash
+
+# Ubuntu / Debian 系（例）
+sudo apt update
+sudo apt install -y zsh tmux git vim
 ```
-
-必要に応じて、MacVim もインストールしてください。
-
-- https://github.com/macvim-dev/macvim/releases
 
 ### 2. リポジトリを clone
 
@@ -41,15 +42,31 @@ git clone https://github.com/puriso/dotfiles.git ~/git/dotfiles
 
 ```bash
 ln -sf ~/git/dotfiles/.vimrc ~/.vimrc
-ln -sf ~/git/dotfiles/.dein.toml ~/.dein.toml
-ln -sf ~/git/dotfiles/.dein_lazy.toml ~/.dein_lazy.toml
 ln -sf ~/git/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/git/dotfiles/.starship.toml ~/.starship.toml
 ln -sf ~/git/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/git/dotfiles/.gitconfig ~/.gitconfig
 ```
 
-### 4. tmux プラグインマネージャ（TPM）の導入
+### 4. Vim テーマ `dark2026` を配置
+
+このリポジトリ同梱の `colors/dark2026.vim` は、`.vimrc` をこのリポジトリから読み込む場合は自動で参照されます。
+
+`~/.vim/colors/` に配置して使いたい場合は、以下を実行してください。
+
+```bash
+mkdir -p ~/.vim/colors
+cp ~/git/dotfiles/colors/dark2026.vim ~/.vim/colors/dark2026.vim
+```
+
+`.vimrc` は次の優先順位で `colorscheme dark2026` を適用します。
+
+1. `~/.vim/colors/dark2026.vim`
+2. このリポジトリ内の `colors/dark2026.vim`（`.vimrc` と同じディレクトリ配下）
+
+どちらも見つからない場合はテーマ適用をスキップするため、Vim 起動は継続します。
+
+### 5. tmux プラグインマネージャ（TPM）の導入
 
 ```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -57,12 +74,11 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 tmux 起動後に `prefix + I` でプラグインをインストールしてください。
 
-### 5. Vim プラグインの初期導入
+## Vim の方針
 
-この `.vimrc` は、初回起動時に `dein.vim` を自動インストールする設定になっています。
-
-- Vim 起動後にプラグイン導入処理が走ります。
-- Python/Ruby 系補完を使う場合は、必要な言語ランタイムやツール（例: `solargraph`）を別途インストールしてください。
+- プラグインマネージャ（dein.vim）は使用しません。
+- Vim はプラグインなしの最小構成で起動します。
+- 見た目は `dark2026` テーマで統一します（テーマファイル配置時）。
 
 ## 補足
 
@@ -73,10 +89,6 @@ chsh -s "$(command -v zsh)"
 ```
 
 変更後はターミナルを再起動してください。
-
-### MacVim 連携
-
-`.zshrc` では MacVim バイナリが存在する場合、`vi` / `vim` エイリアスを MacVim に向ける設定があります。
 
 ## 注意点
 
