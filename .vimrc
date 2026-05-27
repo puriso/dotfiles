@@ -175,7 +175,7 @@ syntax on
 " ------------------------------------------------------------------------------
 set background=dark
 silent! colorscheme backpack
-if g:colors_name !=# 'backpack'
+if !exists('g:colors_name') || g:colors_name !=# 'backpack'
   colorscheme desert
 endif
 
