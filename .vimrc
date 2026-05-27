@@ -165,76 +165,21 @@ source $VIMRUNTIME/macros/matchit.vim
 set tags=./tags; "tagsファイルを上層へ探しに行く
 
 " ------------------------------------------------------------------------------
-" プラグイン管理（Dein）設定セクション（旧ASCIIアートを削除）
+" プラグイン管理を使わない前提の基本設定
 " ------------------------------------------------------------------------------
-" POWERED BY Dein.vim
-" https://github.com/Shougo/dein.vim/blob/master/README.md
-" ------------------------------------------------------------------------------
-" ------------------------------------------------------------------------------
-" Dein.vim 自動インストール
-"-------------------------------------------------------------------------------
-filetype off
-if has('vim_starting')
-  if !isdirectory(expand("~/.cache/dein"))
-    echo "install 'dein.vim'..."
-    :call system("curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein.vim.installer.sh")
-    :call system("sh dein.vim.installer.sh ~/.cache/dein")
-    :call system("rm dein.vim.installer.sh")
-  endif
-endif
-execute 'set runtimepath^=~/.cache/dein'
 filetype plugin indent on
+syntax on
 
 " ------------------------------------------------------------------------------
-" Dein.vim設定
-"-------------------------------------------------------------------------------
-" Add the dein installation directory into runtimepath
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-if dein#load_state('~/.cache/dein')
- call dein#begin('~/.cache/dein')
- "----------------------------------------
- " 設定START
- "----------------------------------------
-    " TOMLファイルにて管理
-    call dein#load_toml('~/.dein.toml', {'lazy': 0})
-    call dein#load_toml('~/.dein_lazy.toml', {'lazy': 1})
- "----------------------------------------
- " END ADD
- "----------------------------------------
- call dein#end()
- call dein#save_state()
-endif
+" テーマ（ダーク系の定番配色）
+" ------------------------------------------------------------------------------
+set background=dark
+colorscheme desert
 
-" プラグインの自動インストール
-if dein#check_install()
-  call dein#install()
-endif
-
-
-" Options of itchyny/lightline.vim
+" ------------------------------------------------------------------------------
+" ステータスライン（標準機能のみ）
+" ------------------------------------------------------------------------------
 set laststatus=2
-let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \ 'active': {
-    \   'right': [ [ 'syntastic', 'lineinfo' ],
-    \              [ 'percent' ],
-    \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
-    \ },
-    \ 'component_expand': {
-    \   'syntastic': 'SyntasticStatuslineFlag',
-    \ },
-    \ 'component_type': {
-    \   'syntastic': 'error',
-    \ }
-    \ }
-augroup AutoSyntastic
-    autocmd!
-    autocmd BufWritePost *.c,*.cpp call s:syntastic()
-augroup END
-function! s:syntastic()
-    SyntasticCheck
-    call lightline#update()
-endfunction
 
 
 " ------------------------------------------------------------------------------
