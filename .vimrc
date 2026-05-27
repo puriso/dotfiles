@@ -141,7 +141,7 @@ if has("linux")
 endif
 
 " ------------------------------------------------------------------------------
-" キーマッピング設定セクション（旧ASCIIアートを削除）
+" キーマッピング設定セクション
 " ------------------------------------------------------------------------------
 " Leader Key
 let mapleader = "\<Space>"
@@ -154,7 +154,7 @@ inoremap <silent> jj <ESC>  " jj == ESC
 inoremap <silent> kk <ESC>  " kk == ESC
 
 " ------------------------------------------------------------------------------
-" 補助機能・タグ設定セクション（旧ASCIIアートを削除）
+" 補助機能・タグ設定セクション
 " ------------------------------------------------------------------------------
 " [matchit] if~endif間を%ボタンで移動
 source $VIMRUNTIME/macros/matchit.vim
@@ -163,76 +163,24 @@ source $VIMRUNTIME/macros/matchit.vim
 set tags=./tags; "tagsファイルを上層へ探しに行く
 
 " ------------------------------------------------------------------------------
-" プラグイン管理（Dein）設定セクション（旧ASCIIアートを削除）
+" プラグイン管理を使わない前提の基本設定
 " ------------------------------------------------------------------------------
-" POWERED BY Dein.vim
-" https://github.com/Shougo/dein.vim/blob/master/README.md
-" ------------------------------------------------------------------------------
-" ------------------------------------------------------------------------------
-" Dein.vim 自動インストール
-"-------------------------------------------------------------------------------
-filetype off
-if has('vim_starting')
-  if !isdirectory(expand("~/.cache/dein"))
-    echo "install 'dein.vim'..."
-    :call system("curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein.vim.installer.sh")
-    :call system("sh dein.vim.installer.sh ~/.cache/dein")
-    :call system("rm dein.vim.installer.sh")
-  endif
-endif
-execute 'set runtimepath^=~/.cache/dein'
 filetype plugin indent on
+syntax on
 
 " ------------------------------------------------------------------------------
-" Dein.vim設定
-"-------------------------------------------------------------------------------
-" Add the dein installation directory into runtimepath
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-if dein#load_state('~/.cache/dein')
- call dein#begin('~/.cache/dein')
- "----------------------------------------
- " 設定START
- "----------------------------------------
-    " TOMLファイルにて管理
-    call dein#load_toml('~/.dein.toml', {'lazy': 0})
-    call dein#load_toml('~/.dein_lazy.toml', {'lazy': 1})
- "----------------------------------------
- " END ADD
- "----------------------------------------
- call dein#end()
- call dein#save_state()
+" テーマ
+" ------------------------------------------------------------------------------
+set background=dark
+silent! colorscheme backpack
+if !exists('g:colors_name') || g:colors_name !=# 'backpack'
+  colorscheme desert
 endif
 
-" プラグインの自動インストール
-if dein#check_install()
-  call dein#install()
-endif
-
-
-" Options of itchyny/lightline.vim
+" ------------------------------------------------------------------------------
+" ステータスライン
+" ------------------------------------------------------------------------------
 set laststatus=2
-let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \ 'active': {
-    \   'right': [ [ 'syntastic', 'lineinfo' ],
-    \              [ 'percent' ],
-    \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
-    \ },
-    \ 'component_expand': {
-    \   'syntastic': 'SyntasticStatuslineFlag',
-    \ },
-    \ 'component_type': {
-    \   'syntastic': 'error',
-    \ }
-    \ }
-augroup AutoSyntastic
-    autocmd!
-    autocmd BufWritePost *.c,*.cpp call s:syntastic()
-augroup END
-function! s:syntastic()
-    SyntasticCheck
-    call lightline#update()
-endfunction
 
 
 " ------------------------------------------------------------------------------
@@ -315,8 +263,6 @@ set t_Co=256
 
 " 各種設定
 if has("mac")
-    " VSCode Dark+ に近いテーマを利用
-    colorscheme codedark
     highlight Normal ctermbg=none
 elseif has('gui_macvim')
     set showtabline=2	" タブを常に表示
@@ -338,12 +284,6 @@ let g:lucius_style       = "dark"
 let g:lucius_contrast    = "normal" "[low],[normal],[high]
 let g:lucius_contrast_bg = "normal" "[normal] or [high]
 " Lucius は未使用
-
-let g:airline#extensions#statusline#enabled = 1
-let g:airline#extensions#statusline#buffer_idx_mode = 1
-"let g:airline_theme='papercolor' "落ち着いた色調が好き
-
-let g:airline#extensions#branch#enabled = 1
 
 " Sysntax ON
 source $VIMRUNTIME/syntax/syntax.vim

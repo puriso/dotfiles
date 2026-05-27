@@ -4,19 +4,18 @@
 
 ## 対応環境
 
-- macOS（Homebrew 利用を想定）
+- macOS
 - zsh
 - tmux
 - Vim / MacVim
 
 ## 含まれている主な設定
 
-- `.zshrc`（エイリアス、各種 PATH、Starship 初期化など）
-- `.vimrc`（基本設定、dein.vim によるプラグイン管理）
-- `.dein.toml` / `.dein_lazy.toml`（Vim プラグイン定義）
-- `.tmux.conf`（キーバインド、TPM プラグイン設定）
-- `.starship.toml`（プロンプト表示設定）
-- `.gitconfig`（Git エイリアス）
+- `.zshrc`
+- `.vimrc`
+- `.tmux.conf`
+- `.starship.toml`
+- `.gitconfig`
 
 ## セットアップ手順
 
@@ -41,15 +40,13 @@ git clone https://github.com/puriso/dotfiles.git ~/git/dotfiles
 
 ```bash
 ln -sf ~/git/dotfiles/.vimrc ~/.vimrc
-ln -sf ~/git/dotfiles/.dein.toml ~/.dein.toml
-ln -sf ~/git/dotfiles/.dein_lazy.toml ~/.dein_lazy.toml
 ln -sf ~/git/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/git/dotfiles/.starship.toml ~/.starship.toml
 ln -sf ~/git/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/git/dotfiles/.gitconfig ~/.gitconfig
 ```
 
-### 4. tmux プラグインマネージャ（TPM）の導入
+### 4. tmux プラグインマネージャの導入
 
 ```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -57,12 +54,12 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 tmux 起動後に `prefix + I` でプラグインをインストールしてください。
 
-### 5. Vim プラグインの初期導入
+### 5. Vim の補完/LSP/lint/検索の方針
 
-この `.vimrc` は、初回起動時に `dein.vim` を自動インストールする設定になっています。
+この設定は Vim 側のプラグイン管理を行わず、補完・LSP・lint・検索は VS Code / Cursor / CLI / プロジェクト側の仕組みに寄せる方針です。
 
-- Vim 起動後にプラグイン導入処理が走ります。
-- Python/Ruby 系補完を使う場合は、必要な言語ランタイムやツール（例: `solargraph`）を別途インストールしてください。
+- Vim は編集のための基本機能と配色に絞っています。
+- 言語機能が必要な場合は、各プロジェクトが提供する公式ツールを利用してください。
 
 ## 言語ランタイム管理方針（mise）
 
