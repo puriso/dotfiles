@@ -48,7 +48,6 @@ compinit
 #  `--' `--' `------'  `--'     `--' `--' `-----'
 # ---------------------------------------------------------------------------------------
 # tmux
-alias tmux='tmux -u'
 # rmコマンドの先をゴミ箱へ
 alias rm='rmtrash'
 # ctags
@@ -105,7 +104,9 @@ target_shell=$1
 # -----------------------------------------
 # プロンプト（Starship）
 export STARSHIP_CONFIG="$HOME/.starship.toml"
-eval "$(starship init zsh)"
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
 
 # Git情報の表示は Starship に移行
 
@@ -175,8 +176,18 @@ export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
 eval "$(anyenv init -)"
 
 # -----------------------------------------
-# tmux 関数（設定の再読み込み用）
+# tmux 関数（Starship確認つき）
 # -----------------------------------------
 tmux() {
-  command tmux source-file ~/.tmux.conf
+  # tmux 起動時に starship がなければ Homebrew で導入を試みる
+  if ! command -v starship >/dev/null 2>&1; then
+    if command -v brew >/dev/null 2>&1; then
+      echo "starship が見つからないため、brew install starship を実行します。"
+      brew install starship
+    else
+      echo "starship が見つかりません。Homebrew も見つからないため自動インストールできません。"
+    fi
+  fi
+
+  command tmux -u "$@"
 }
