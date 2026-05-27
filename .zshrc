@@ -108,9 +108,9 @@ target_shell=$1
 # Default
 PROMPT="%F{2}[%m(%n)]%f %F{250}%~
 %f%% "
-# SSHログイン時はリモート先が分かるようにホスト名を強調する
+# SSHログイン時はユーザー名を強調表示する（ホスト名は表示しない）
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-  PROMPT="%F{10}[${HOST%%.*}(%n)]%f %F{250}%~
+  PROMPT="%F{10}[(%n)]%f %F{250}%~
 %f%% "
 ;
 
