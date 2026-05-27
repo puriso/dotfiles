@@ -109,10 +109,13 @@ if [ -f /Users/kotake/.phpenv/bin ]; then
 fi
 
 # -----------------------------------------
-# Ruby
+# Ruby / Node.js / Python（miseへ集約）
 # -----------------------------------------
-export PATH="$HOME/.rbenv/shims:$PATH"
-eval "$(rbenv init -)"
+# 旧: rbenv / nodenv / pyenv / anyenv の直接初期化は command not found 回避のため停止
+# 必要時はプロジェクト移行完了後に削除候補
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
 
 # -----------------------------------------
 # Apache Cordova
@@ -122,17 +125,9 @@ export PATH=$PATH:${ANDROID_HOME}/platforms:${ANDROID_HOME}/tools
 
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 export PATH=$PATH:./node_modules/.bin
-export PATH="$HOME/.nodenv/bin:$PATH"
-eval "$(nodenv init -)"
-
 export PATH=/Library/Frameworks/Python.framework/Versions/3.8/bin:$PATH
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
 export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
 export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
-
-eval "$(anyenv init -)"
 
 # -----------------------------------------
 # tmux 関数（Starship確認つき）
