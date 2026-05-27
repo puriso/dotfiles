@@ -15,7 +15,7 @@ brew update
 brew install colordiff
 brew install rmtrash
 brew install zsh
-sudo -- sh -c 'echo '/usr/local/bin/zsh' >> /etc/shells'
+sudo -- sh -c "echo '/usr/local/bin/zsh' >> /etc/shells"
 
 # Install tmux
 brew install tmux
