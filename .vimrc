@@ -19,6 +19,12 @@ set clipboard+=unnamed
 syntax on
 filetype plugin indent on
 
+let s:dotfiles_dir = expand('<sfile>:p:h')
+let s:repo_dark2026 = s:dotfiles_dir . '/colors/dark2026.vim'
+
 if filereadable(expand('~/.vim/colors/dark2026.vim'))
+  colorscheme dark2026
+elseif filereadable(s:repo_dark2026)
+  execute 'set runtimepath^=' . fnameescape(s:dotfiles_dir)
   colorscheme dark2026
 endif

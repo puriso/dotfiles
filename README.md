@@ -50,14 +50,21 @@ ln -sf ~/git/dotfiles/.gitconfig ~/.gitconfig
 
 ### 4. Vim テーマ `dark2026` を配置
 
-このリポジトリ同梱の `colors/dark2026.vim` を、Vim が参照できる場所に配置してください。
+このリポジトリ同梱の `colors/dark2026.vim` は、`.vimrc` をこのリポジトリから読み込む場合は自動で参照されます。
+
+`~/.vim/colors/` に配置して使いたい場合は、以下を実行してください。
 
 ```bash
 mkdir -p ~/.vim/colors
 cp ~/git/dotfiles/colors/dark2026.vim ~/.vim/colors/dark2026.vim
 ```
 
-`.vimrc` は `~/.vim/colors/dark2026.vim` が存在する場合のみ `colorscheme dark2026` を適用するため、テーマファイルが未配置でも Vim 起動は継続します。
+`.vimrc` は次の優先順位で `colorscheme dark2026` を適用します。
+
+1. `~/.vim/colors/dark2026.vim`
+2. このリポジトリ内の `colors/dark2026.vim`（`.vimrc` と同じディレクトリ配下）
+
+どちらも見つからない場合はテーマ適用をスキップするため、Vim 起動は継続します。
 
 ### 5. tmux プラグインマネージャ（TPM）の導入
 
