@@ -15,7 +15,8 @@ brew update
 brew install colordiff
 brew install rmtrash
 brew install zsh
-sudo -- sh -c 'echo '/usr/local/bin/zsh' >> /etc/shells'
+ZSH_PATH="$(command -v zsh)"
+sudo -- sh -c "echo '${ZSH_PATH}' >> /etc/shells"
 
 # Install tmux
 brew install tmux
@@ -37,7 +38,7 @@ brew update
 brew uninstall ricty
 brew tap sanemat/font
 brew install ricty --with-powerline
-cp -f /usr/local/Cellar/ricty/3.2.3/share/fonts/Ricty*.ttf ~/Library/Fonts/
+cp -f "$(brew --prefix)/Cellar/ricty/3.2.3/share/fonts/Ricty*.ttf" ~/Library/Fonts/
 
 # Clone my dotfiles from github
 git clone git://github.com/puriso/dotfiles ~/git/dotfiles/
@@ -64,6 +65,5 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ### デフォルトシェル変更
 ```
-chsh -s /usr/local/bin/zsh # その後ターミナル再起動
+chsh -s "$(command -v zsh)" # その後ターミナル再起動
 ```
-
