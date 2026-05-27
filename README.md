@@ -46,7 +46,6 @@ git clone git://github.com/puriso/dotfiles ~/git/dotfiles/
 ln -sf ~/git/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/git/dotfiles/.dein.toml ~/.dein.toml
 ln -sf ~/git/dotfiles/.dein_lazy.toml ~/.dein_lazy.toml
-ln -sf ~/git/dotfiles/.jshintrc ~/.jshintrc
 ln -sf ~/git/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/git/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/git/dotfiles/.gitconfig ~/.gitconfig
@@ -62,8 +61,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Install for vimrc
 # php
 npm install -g phplint
-# JSHint
-npm install -g jshint
 # ctag
 brew install ctags
 ```

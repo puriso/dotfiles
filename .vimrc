@@ -396,7 +396,6 @@ nnoremap <C-g> :<C-u>Denite file_rec<CR>
 " Install tools
 " ====================
 " PHPLint
-" JSHint
 if executable('typescript-language-server')
   au User lsp_setup call lsp#register_server({
         \ 'name': 'typescript-language-server',

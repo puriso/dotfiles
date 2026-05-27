@@ -131,7 +131,6 @@ hook_source = '''
                 \ "mode" : "passive",
                 \ "active_filetypes" : ["javascript", "json","php","ruby","toml"],
                 \}
-    let g:syntastic_javascript_checker = "jshint"
 '''
 
 # Rails 静的コード解析ツール :RuboCop
