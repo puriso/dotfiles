@@ -358,8 +358,14 @@ set t_Co=256
 
 " 各種設定
 if has("mac")
-    " VSCode Dark+ に近いテーマを利用
-    colorscheme codedark
+    " VSCode Dark+ に近いテーマを利用（未インストール時はデフォルトにフォールバック）
+    if exists('g:colors_name') && g:colors_name ==# 'codedark'
+      " すでに適用済み
+    elseif globpath(&runtimepath, 'colors/codedark.vim') !=# ''
+      colorscheme codedark
+    else
+      colorscheme default
+    endif
     highlight Normal ctermbg=none
 elseif has('gui_macvim')
     set showtabline=2	" タブを常に表示
