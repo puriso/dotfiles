@@ -15,6 +15,7 @@ brew update
 brew install colordiff
 brew install rmtrash
 brew install zsh
+brew install starship
 sudo -- sh -c 'echo '/usr/local/bin/zsh' >> /etc/shells'
 
 # Install tmux
@@ -47,6 +48,7 @@ ln -sf ~/git/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/git/dotfiles/.dein.toml ~/.dein.toml
 ln -sf ~/git/dotfiles/.dein_lazy.toml ~/.dein_lazy.toml
 ln -sf ~/git/dotfiles/.zshrc ~/.zshrc
+ln -sf ~/git/dotfiles/.starship.toml ~/.starship.toml
 ln -sf ~/git/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/git/dotfiles/.gitconfig ~/.gitconfig
 mv ~/.gvimrc ~/.gvimrc_original

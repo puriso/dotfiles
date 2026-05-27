@@ -48,7 +48,6 @@ compinit
 #  `--' `--' `------'  `--'     `--' `--' `-----'
 # ---------------------------------------------------------------------------------------
 # tmux
-alias tmux='tmux -u'
 # rmコマンドの先をゴミ箱へ
 alias rm='rmtrash'
 # ctags
@@ -103,35 +102,14 @@ fi
 target_shell=$1
 
 # -----------------------------------------
-# プロンプト
-# -----------------------------------------
-# Default
-PROMPT="%F{2}[%m(%n)]%f %F{250}%~
-%f%% "
-# SSHログイン時はリモート先が分かるようにホスト名を強調する
-[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-  PROMPT="%F{10}[${HOST%%.*}(%n)]%f %F{250}%~
-%f%% "
-;
+# プロンプト（Starship）
+export STARSHIP_CONFIG="$HOME/.starship.toml"
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
 
-# ---------------------------------------------------------------------------------------
-#                         _  .-')         .-') _   _   .-')              ) (`-.
-#                        ( \( -O )       (  OO) ) ( '.( OO )_             ( OO ).
-#    ,------. .-'),-----. ,------.       /     '._ ,--.   ,--.),--. ,--. (_/.  \_)-.
-# ('-| _.---'( OO'  .-.  '|   /`. '      |'--...__)|   `.'   | |  | |  |  \  `.'  /
-# (OO|(_\    /   |  | |  ||  /  | |      '--.  .--'|         | |  | | .-') \     /\
-# /  |  '--. \_) |  |\|  ||  |_.' |         |  |   |  |'.'|  | |  |_|( OO ) \   \ |
-# \_)|  .--'   \ |  | |  ||  .  '.'         |  |   |  |   |  | |  | | `-' /.'    \_)
-#.-.\|  |_)     `'  '-'  '|  |\  \          |  |   |  |   |  |('  '-'(_.-'/  .'.  \
-#`-' `--'         `-----' `--' '--'         `--'   `--'   `--'  `-----'  '--'   '--'
-# ---------------------------------------------------------------------------------------
-# Git
-autoload -Uz vcs_info
-zstyle ':vcs_info:git:*' check-for-changes true #formats 設定項目で %c,%u が使用可
-zstyle ':vcs_info:git:*' stagedstr "%F{green}!" #commit されていないファイルがある
-zstyle ':vcs_info:git:*' unstagedstr "%F{magenta}+" #add されていないファイルがある
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u(%b)%f" #通常
-zstyle ':vcs_info:*' actionformats '[%b|%a]' #rebase 途中,merge コンフリクト等 formats 外の表示
+# Git情報の表示は Starship に移行
+
 
 # ---------------------------------------------------------------------------------------
 #               .-') _    ('-. .-.   ('-.  _  .-')    .-')
@@ -198,8 +176,18 @@ export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
 eval "$(anyenv init -)"
 
 # -----------------------------------------
-# tmux 関数（設定の再読み込み用）
+# tmux 関数（Starship確認つき）
 # -----------------------------------------
 tmux() {
-  command tmux source-file ~/.tmux.conf
+  # tmux 起動時に starship がなければ Homebrew で導入を試みる
+  if ! command -v starship >/dev/null 2>&1; then
+    if command -v brew >/dev/null 2>&1; then
+      echo "starship が見つからないため、brew install starship を実行します。"
+      brew install starship
+    else
+      echo "starship が見つかりません。Homebrew も見つからないため自動インストールできません。"
+    fi
+  fi
+
+  command tmux -u "$@"
 }
